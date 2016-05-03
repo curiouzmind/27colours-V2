@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-use App\song;
+use App\Song;
 use App\Video;
 use App\Gallery;
 
