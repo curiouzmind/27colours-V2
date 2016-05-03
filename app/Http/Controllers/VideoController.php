@@ -101,16 +101,17 @@ class VideoController extends Controller
 
     }
 
-         function postCreate()
+         function postCreate(Request $request)
     {
+        //dd($request->all());
 
         $vid = [
-            'title' => Input::get('title'),
-            'description' => Input::get('description'),
-            'image' => Input::file('image'),
-            'video' =>Input::file('video'),
-            'video_type' => Input::get('genre'),
-            'youtube' => Input::get('youtube'),
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'image' => $request->file('image'),
+            'video' =>$request->file('video'),
+            'video_type' => $request->get('video_type'),
+            'youtube' => $request->get('youtube'),
         ];
 
         $rules = [
@@ -122,51 +123,79 @@ class VideoController extends Controller
             'youtube' => 'min:5',
         ];
 
-        $validator = Validator::make($vid, $rules);
+        //$hold='';
+        $validator = \Validator::make($vid, $rules);
         if ($validator->passes())
         {
             $video = new Video;
-            $youtube = Input::get('youtube');
-            $yvid= $video->getYoutube($youtube);
-            $video->youtube= $yvid;
-
-            $video->title = Input::get('title');
-            $video->description=Input::get('description');
-            $video->video_type=Input::get('genre');
-
-            $vid= Input::file('video');
-            if(isset($vid))
+            if($request->has('youtube'))
             {
-            $vid_name = $vid->getClientOriginalName();
-            $name = Str::random(6).'_'. $vid_name;
-            $desPath= public_path('img/videos/');
-            $upload_success =$vid->move($desPath,$name);
-            $video->video ='img/videos/'.$name;
+                $youtube = $request->get('youtube');
+                $yvid= $video->getYoutube($youtube);
+                $video->youtube= $yvid;
             }
-            if (Input::hasFile('image'))
+            else{
+                $yvid='No youtube';
+            }
+
+            $video->title = $request->get('title');
+            $video->video_type=$request->get('video_type');
+
+            if($request->has('description'))
+            {
+                $video->description=$request->get('description');
+            }
+
+            if($request->hasFile('video'))
+            {
+                $vid= $request->file('video');
+                //if(isset($vid))
+                $vid_name = $vid->getClientOriginalName();
+                $v_name = str_random(6).'_'. $vid_name;
+                $desPath= public_path('img/videos/');
+                $upload_success =$vid->move($desPath,$v_name);
+                $hold= 'img/videos/'.$v_name;
+                $video->video =$hold;
+            }
+            else{
+                $hold='No uploads';
+            }
+
+            if ($request->hasFile('image'))
              {
-            $imag= Input::file('image');
-            $imag_name = $imag->getClientOriginalName();
-            $name = Str::random(6).'_'.$imag_name;
-            $desPath= public_path('img/videos/images/');
-            $upload_success =$imag->move($desPath, $name);
-            $video->image='img/videos/images/'.$name;
+                $imag= $request->file('image');
+                $imag_name = $imag->getClientOriginalName();
+                $name = str_random(6).'_'.$imag_name;
+                $desPath= public_path('img/videos/images/');
+                $upload_success =$imag->move($desPath, $name);
+                $video->image='img/videos/images/'.$name;
+            }          
+
+            if($hold=='No uploads' && $yvid=='No youtube')
+            {
+                return Redirect::back()
+                ->with('errors', 'Upload a Video directly OR Supply your youtube link')
+                ->withInput($request->only('title','description','youtube','video_type'));
             }
-            if (! isset($vid) && ! isset($yvid) )
-                    {
-                 return Redirect::to('/video/upload')
-                ->with('errors', 'Upload a Video directly OR Supply your soundcloud link');
-                    }
+
             $video->user()->associate(Auth::user());
             $video->save();
 
+             if(($video->video == $hold) && ($video->youtube == $yvid))
+            {
+                $video->delete();  
+                 return Redirect::back()
+                ->with('errors', 'Either Upload Video directly OR Supply your youtube link, not both!!!');
+                
+            }
+    
              return Redirect::to('/profile'.'#videos')
-             ->with('noticev', 'New video added!!!');
+             ->with('notices', 'New video added!!!');
 
          }
-        return Redirect::to('/video/upload')
-        ->with('errorv', $validator->messages())
-        ->withInput(Input::only('title','description','youtube','genre'));
+        return Redirect::back()
+        ->with('errors', $validator->messages())
+        ->withInput($request->only('title','description','youtube','video_type'));
 
     }
 

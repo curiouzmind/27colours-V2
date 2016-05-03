@@ -261,12 +261,14 @@ class SongController extends Controller
                 $mus= $song->getSoundcloud($soundcloud);
                 $song->soundcloud= $mus;
             }
+            else{
+                $mus='No soundcloud';
+            }
 
 
-            if(!  $request->hasFile('song'))
+            if( $request->hasFile('song'))
             {
-                 return "i dont have a song";
-
+    
                 $music=$request->file('song');
                 $song_fileName= $music->getClientOriginalName();
                 $m_name = str_random(6).'_'.$song_fileName;
@@ -275,20 +277,10 @@ class SongController extends Controller
                 $hold = 'img/songs/'.$m_name;
                 $song->song = $hold;
             }
+            else{
+                $hold='No song';
+            }
             
-            /**
-             $music=$request->file('song');
-             if ($music)
-             {
-                $song_fileName= $music->getClientOriginalName();
-                $m_name = str_random(6).'_'.$song_fileName;
-                $desPath= public_path('img/songs/');
-                $upload_success = $music->move($desPath, $m_name);
-                $hold = 'img/songs/'.$m_name;
-                $song->song = $hold;
-             }
-            **/
-
             if($request->has('youtube'))
             {
                  $youtube = $request->get('youtube');
@@ -296,8 +288,8 @@ class SongController extends Controller
                  $song->youtube= $vid;
             }
 
-            $song->title = $request->get('title');
-             $song->genre =$request->get('genre');
+             $song->title = $request->get('title');
+             $song->genre = $request->get('genre');
 
              if($request->has('description'))
              {
@@ -315,28 +307,29 @@ class SongController extends Controller
                 $song->image='img/songs/images/'.$name;
             }
 
-            if (! isset($music) && ! isset($mus) )
+            if($hold=='No uploads' && $mus=='No youtube')
             {
-                 return Redirect::to('/song/upload2')
-                ->with('errors', 'Upload Song directly OR Supply your soundcloud link');
+                return Redirect::back()
+                ->with('errors', 'Upload a Song directly OR Supply your soundcloud link')
+                ->withInput($request->only('title','description','youtube','genre'));
             }
 
             $song->user()->associate(Auth::user());
             $song->save();
 
-            if($song->contains('song',$hold) || $song->contains('soundcloud',$mus))
+             if(($song->song == $hold) && ($song->soundcloud == $mus))
             {
-                 return "I am here".$hold;
-             
+                $song->delete();  
+                 return Redirect::back()
+                     ->with('errors', 'Either Upload Song directly OR Supply your Soundcloud link, not both!!!');              
             }
-            else{
-                return "song is empty again";
-            }
-           // $song->save();
+    
+             return Redirect::to('/profile'.'#songs')
+             ->with('noticev', 'New song added!!!');
 
            // \DB::commit();
 
-            return Redirect::to('/profile')
+            return Redirect::to('/profile'.'#songs')
             ->with('notices', 'New song added!!!');
 
 

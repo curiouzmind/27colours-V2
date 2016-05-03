@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
-    protected $fillable = [];
+   protected $fillable=['title','description','video','video_type','image','youtube'];
 	protected $table = 'videos';
 
      public function likes()

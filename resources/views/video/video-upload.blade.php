@@ -76,7 +76,7 @@
                         </div>
                         <div class="panel-body" style="min-height:300px;">
                             <form role="form" id="vid-upload" method="post" enctype="multipart/form-data" action="/video/create">
-                                <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="row setup-content" id="step-1">
                                     <div class="col-xs-12">
                                         <div class="col-md-12">
@@ -84,10 +84,19 @@
                                             <hr class="p5">
                                             <div class="form-group m0">
                                                 <label class="control-label">Upload from device/desktop</label>
-                                                <input required="required" class="form-control" type="file" id="video" name="video" accept="video/*">
-                                                <small class="help-block">*Required | *Maximum of 10 uploads | *Only Mp4 formats allowed</small>
+                                                <input class="form-control" type="file" id="video" name="video" accept="video/*">
+                                                <small class="help-block">*optional | *Maximum of 10 uploads | *Only Mp4 formats allowed</small>
                                             </div>
                                             <hr>
+                                            <h4 style="text-align:center;">OR</h4>
+                                            <hr class="p5">
+                                            <div class="form-group">
+                                                <label class="control-label">Enter youtube link here</label>
+                                                <input type="text" class="form-control" id="youtube"
+                                                       name="youtube" placeholder="copy and paste your youtube url here"/>
+                                            </div>
+
+
                                             <button class="btn btn-primary nextBtn btn-md pull-right" type="button" >Next</button>
                                         </div>
                                     </div>
@@ -99,12 +108,12 @@
                                             <hr class="p5">
                                             <div class="form-group">
                                                 <label class="control-label">Enter Video Title</label>
-                                                <input required="required" type="text" class="form-control" id="title"
+                                                <input required="required" type="text" class="form-control" id="title"   
                                                        name="title" placeholder="Enter Video Title"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="genre" class="control-label">Select Video Genre</label>
-                                                <select class="form-control" name="genre" id="genre" required="required">
+                                                <select class="form-control" name="video_type" id="video_type" required="required">
                                                     <option>Music video</option>
                                                     <option>Comedy</option>
                                                     <option>Dance</option>
