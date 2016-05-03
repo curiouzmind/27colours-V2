@@ -263,9 +263,9 @@ class SongController extends Controller
             }
 
 
-           /** if( $request->hasFile('song'))
+            if(!  $request->hasFile('song'))
             {
-                 return "i do have song";
+                 return "i dont have a song";
 
                 $music=$request->file('song');
                 $song_fileName= $music->getClientOriginalName();
@@ -275,8 +275,8 @@ class SongController extends Controller
                 $hold = 'img/songs/'.$m_name;
                 $song->song = $hold;
             }
-            **/
-
+            
+            /**
              $music=$request->file('song');
              if ($music)
              {
@@ -287,6 +287,7 @@ class SongController extends Controller
                 $hold = 'img/songs/'.$m_name;
                 $song->song = $hold;
              }
+            **/
 
             if($request->has('youtube'))
             {
