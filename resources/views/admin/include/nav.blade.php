@@ -51,14 +51,14 @@
                             Add Pictures <span class="[ pull-right glyphicon glyphicon-picture ]"></span></a>
                     </li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{{action('UsersController@getLogout')}}" class="[ animate ]">
+                    <li><a href="/logout" class="[ animate ]">
                             Logout  <span class="[ pull-right glyphicon glyphicon-off ]"></span></a>
                     </li>
                 </ul>
             </li>
         @else
-            <li><a href="/users/register" class="[ animate ]">Sign Up as a Talent</a></li>
-            <li><a class="animate" href="/users/login">Login</a></li>
+            <li><a href="/register" class="[ animate ]">Sign Up as a Talent</a></li>
+            <li><a class="animate" href="/login">Login</a></li>
         @endif
     </ul>
     <!-- /.navbar-top-links -->

@@ -919,7 +919,7 @@
                             <p> <a style="border-width:1px;border-style:solid;border-color:#697177;background-color:#f1f5f6;color:#263642;
 							padding-top:8px;padding-right:15px;padding-bottom:8px;padding-left:15px;font-family:Arial, Helvetica, sans-serif;
 							font-size:15px;font-weight:bold;text-decoration:none;text-shadow:0 1px #ffffff;line-height:50px;vertical-align:middle;
-							border-radius:6px;box-shadow:inset 0 0 1px #e8eef0, inset 0px -25px 25px -5px #cad8dd;" href={{url('/activation/' .$confirmation_code)}} target="_blank" class="">Confirm Email</a></p>
+							border-radius:6px;box-shadow:inset 0 0 1px #e8eef0, inset 0px -25px 25px -5px #cad8dd;" href="{{url('/activation/'.$confirmation_code)}}" target="_blank" class="">Confirm Email</a></p>
                           </td>
                           <td class="expander"></td>
                         </tr>

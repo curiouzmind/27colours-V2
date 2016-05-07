@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'support@beazea.com', 'name' => '27colours'],
+    'from' => ['address' => 'support@27colours', 'name' => '27colours'],
 
     /*
     |--------------------------------------------------------------------------

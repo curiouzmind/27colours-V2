@@ -12,6 +12,16 @@ use Redirect;
 
 class VideoController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+     {
+        $this->middleware('confirm',['only'=>['getUpload']]);
+    }
+
     public function getUpload()
     {
         if (Auth::check()) {
@@ -47,59 +57,7 @@ class VideoController extends Controller
 
     }
 
-    function postArtCreate()
-    {
-        $video = [
-            'youtube' => Input::get('youtube'),
-            'video' => Input::file('video'),
-        ];
-
-        $rules = [
-            'youtube' => 'min:5'|'required_without:video',
-            'video'=> 'mimes:mp4,avi,mpeg,ogg,quicktime,wmv, x-flv'|'required_without:youtube',
-        ];
-
-        $validator = Validator::make($video, $rules);
-        if ($validator->passes())
-        {
-            $video = new Video;
-            $youtube = Input::get('youtube');
-            $vid= $video->getYoutube($youtube);
-
-            $video->youtube= $vid;
-
-
-             if (Input::hasFile('video'))
-             {
-            $vid= Input::file('video');
-            $extension = $vid->getClientOriginalExtension();
-        $filename = str_random(12);
-        $name = $filename.'.'.$extension;
-            $desPath=public_path('img/videos/');
-            $upload_success =$vid->move($desPath,$name);
-            $video->video ='img/videos/'.$name;
-
-                if (! isset($video->video))
-                {
-                 return Redirect::to('/video/upload')
-                ->with('errorv', 'Problem with your video upload');
-                }
-              }
-
-            $video->user()->associate(Auth::user());
-            $video->save();
-
-
-            return View::make('video.last-upload')
-            ->with('video', $video)
-            ->with('noticev', 'New video added!!! Complete the remaining details below');
-
-         }
-        return Redirect::to('/video/upload')
-        ->with('errorv', $validator->messages())
-        ->withInput(Input::except('video'));
-
-    }
+    
 
          function postCreate(Request $request)
     {
@@ -177,7 +135,6 @@ class VideoController extends Controller
                 ->with('errors', 'Upload a Video directly OR Supply your youtube link')
                 ->withInput($request->only('title','description','youtube','video_type'));
             }
-
             $video->user()->associate(Auth::user());
             $video->save();
 
@@ -185,12 +142,11 @@ class VideoController extends Controller
             {
                 $video->delete();  
                  return Redirect::back()
-                ->with('errors', 'Either Upload Video directly OR Supply your youtube link, not both!!!');
-                
+                ->with('errors', 'Either Upload Video directly OR Supply your youtube link, not both!!!');               
             }
     
              return Redirect::to('/profile'.'#videos')
-             ->with('notices', 'New video added!!!');
+                    ->with('notices', 'New video added!!!');
 
          }
         return Redirect::back()

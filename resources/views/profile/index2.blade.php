@@ -80,6 +80,14 @@
         <div class="container">
             <div class="row">
                 <!-- Errors, Alerts -->
+                @if(Session::has('flash_reg'))
+                    <div class="alert alert-success"><em> {!! session('flash_login') !!}</em></div>
+                @endif
+
+                @if(Session::has('flash_activate'))
+                    <div class="alert alert-success"><em> {!! session('flash_activate') !!}</em></div>
+                @endif
+
                 @if (Session::get('errors'))
                     <p class="alert alert-error alert-danger fade in" role="alert"><a>
                             {{{ Session::get('errors') }}} <span aria-hidden="true">&times;</span></a></p>
@@ -94,7 +102,7 @@
                         <!-- songs -->
                         <div class="tab-pane fade active in" id="songs">
                             @if ($songs->isEmpty())
-                                <p class="text-center alert alert-info"  role="alert"> no track here :( !</p>
+                                <p class="text-center alert alert-info"  role="alert"> no song yet !</p>
                                 @else
                                         <!-- Fetch Songs -->
                                 @foreach ($songs as $song)
@@ -123,7 +131,7 @@
                         <!-- videos -->
                         <div class="tab-pane fade" id="videos">
                             @if ($videos->isEmpty())
-                                <p class="text-center alert alert-info"  role="alert"> no video here :( !</p>
+                                <p class="text-center alert alert-info"  role="alert"> no video yet !</p>
                                 @else
                                         <!-- Fetch Songs -->
                                 @foreach ($videos as $video)
@@ -152,7 +160,7 @@
                         <!-- pictures -->
                         <div class="tab-pane fade" id="pictures">
                             @if ($galleries->isEmpty())
-                                <p class="text-center alert alert-info"  role="alert"> no picture here :( !</p>
+                                <p class="text-center alert alert-info"  role="alert"> no picture yet !</p>
                                 @else
                                         <!-- Fetch Galleries -->
                                 @foreach ($galleries as $gallery)

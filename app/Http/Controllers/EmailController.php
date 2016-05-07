@@ -9,14 +9,14 @@ use App\Http\Requests;
 class EmailController extends Controller
 {
     public function sendTest()
-    {
-    	$title = 'This is moi';
-        $content = 'I know what you are talikng about, this text needs to be more, so that it will actually pass through';
+    {	
+    	$data=[];
+    	$data['username']="sammy3";
+        $confirmation_code = str_random(6);
 
-        \Mail::send('emails.testing', ['title' => $title, 'content' => $content], function ($message)
+        \Mail::send('emails.activate',['confirmation_code'=> $confirmation_code,'data' =>$data], function ($message)
         {
-
-            $message->from('samizares@beazea.com', 'Testing Arrays')
+            $message->from('sammylee@27colours.com', 'Testing Emails')
             		->subject('From sammy with Love')
 					->to('samizares@gmail.com');
 

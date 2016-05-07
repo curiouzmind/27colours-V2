@@ -11,6 +11,16 @@ use Redirect;
 
 class GalleryController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+     {
+        $this->middleware('confirm',['only'=>['getUpload']]);
+    }
+
     public function getUpload()
     {
         if (Auth::check()) {
@@ -31,25 +41,6 @@ class GalleryController extends Controller
 
      }
 
-     public function getUpload2()
-    {
-        if (Auth::check()) {
-          $user = Auth::user();
-          $g_count= $user->galleries()->count();
-                if ($g_count < 10 ) {
-
-              return View::make('gallery.gallery-upload');
-              }
-              else {
-                return View::make('notice');
-            }
-          }
-
-        else {
-            return Redirect::to('/profile/#error')->with('error', 'Please Login/ Signup to upload');
-        }
-
-     }
 
      public function getShow($id)
     {

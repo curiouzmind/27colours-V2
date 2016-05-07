@@ -144,4 +144,20 @@ class HomeController extends Controller
 
         return View::make('admin.users.blade.php', ['talents', $talents]);
     }
+
+    public function testActivate()
+    {
+      //$username="sammy";
+      $data=collect(['username'=>'sammy2','email'=>'testing things']);
+      //dd($userdata->get('username'));
+      $confirmation_code=str_random(16);
+
+      return view('emails.activate',compact('data','confirmation_code'));
+
+    }
+
+    public function testSend($code)
+    {
+       return "Activation code:".$code;
+    }
 }
