@@ -49,12 +49,17 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <p><span class="glyphicon glyphicon-lock"></span> Sign in</p>
-                                @if (Session::get('error'))
-                                    <div class="alert alert-error alert-danger m0" role="alert">{{{ Session::get('error') }}}</div>
+
+                                @if (Session::get('errors'))
+                                    <div class="alert alert-error alert-danger m0" role="alert">{{{ Session::get('errors') }}}</div>
                                 @endif
 
                                 @if (Session::get('notice'))
                                     <div class="alert alert-info m0"  role="alert">{{{ Session::get('notice') }}}</div>
+                                @endif
+
+                                @if (Session::has('flash_reg'))
+                                    <div class="alert alert-error alert-danger m0" role="alert">{!! Session('flash_reg') !!}</div>
                                 @endif
                             </div>
                             <div class="panel-body">

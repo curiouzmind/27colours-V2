@@ -14,6 +14,17 @@ use Redirect;
 
 class ProfileController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+     {
+        $this->middleware('confirm',['only'=>['getPhoto']]);
+    }
+
     public function getIndex()
     {
         if (\Auth::check())  {

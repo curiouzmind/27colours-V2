@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Services\Mailers\UserMailer;
 
 class User extends Authenticatable
 {
@@ -78,5 +79,53 @@ class User extends Authenticatable
         \Auth::login($user);
         }
         return true;
+    }
+
+    public function findByEmail($userData)
+    {
+        $mailer=new UserMailer();
+       // dd($userData);
+        $user=User::where('email',$userData->email)->first();
+       // dd($user);
+        if($user)
+        {
+            if($userData->nickname)
+            {
+                $user->username=$userData->nickname;
+            }
+            if ($userData->avatar)
+            {
+                $pic = new ProfilePhoto();
+                $pic->image=$userData->avatar;
+                $user->profilePhoto()->save($pic);
+             }
+             if( ! $user->confirmed)
+             {
+                $user->confirmed=1;
+                $mailer->facebookWelcome();
+             }
+            $user->save();
+
+            return $user;
+
+        }
+        else{
+              if( ! isset($userData->email))
+                 {
+                    \Session::flash('notice', 'Your email is not set in Facebook, please register by providing your email and password below.');
+                    return redirect('/register');
+                 }
+
+            $user2= User::firstOrCreate([
+                 'username'=> $userData->nickname,
+                 'email' =>$userData->email,
+            ]);
+
+            $picc = new ProfilePhoto();
+            $picc->image=$userData->avatar;
+            $user2->profilePhoto()->save($picc);
+            $user2->save();
+            return $user2;
+        }
     }
 }

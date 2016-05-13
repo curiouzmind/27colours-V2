@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\AuthenticateUser;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -29,7 +31,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new authentication controller instance.
@@ -100,26 +102,27 @@ class AuthController extends Controller
                 'email'     => $user->email,
                 'confirmation_code'=> $user->confirmation_code,
                 );
-           // dd($data);
-
             $this->sendEmail($data);
-        }
-       // \DB::rollBack();
-         return view('emails.acknowledge', compact('data'));
+        } 
+  
+        \Session::flash('flash_reg','Thank you for registering.Please check 
+            your email account to activate your 27colours Profile before uploading your pics/songs/videos.');
+         return redirect('/login');
         //Auth::guard($this->getGuard())->login($this->create($request->all()));
         //return redirect($this->redirectPath());
     }
 
     public function createConfirmationCode()
     {
-        $confirmation_code = str_random(30);
+        $confirmation_code = str_random(40);
         return $confirmation_code;
     }
 
     public function sendEmail(array $data)
     {
-        \Mail::queue('emails.verify', ['confirmation_code' => $data['confirmation_code'], 'data'=>$data], function($message) use ($data) {
+        \Mail::send('emails.activate', ['confirmation_code' => $data['confirmation_code'], 'data'=>$data], function($message) use ($data) {
                 $message->to($data['email'], $data['username'])
+                        ->from('support@27colours.com')
                     ->subject('27colours: Verify your email address');
             });
 
@@ -130,14 +133,20 @@ class AuthController extends Controller
 
         if($user->accountIsActive($code)) {
 
-            \Session::flash('message', 'Success, your account has been activated.');
-            return redirect('/');
+            \Session::flash('flash_activate', 'Success, your account has been activated.');
+            return redirect('/profile');
 
         }
 
         \Session::flash('message', 'Your account couldn\'t be activated, please try again');
-        return redirect('home');
+        return redirect('/');
     }
+
+    public function facebook(AuthenticateUser $authenticateUser, Request $request)
+    {
+        return $authenticateUser->execute($request->has('code'));
+    }
+
 
 
 }
