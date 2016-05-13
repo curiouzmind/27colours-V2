@@ -20,7 +20,7 @@
 	{{--<link rel="stylesheet" href="{{asset('css/style.css')}}">--}}
 	<link rel="stylesheet" href="{{asset('css/custom.css')}}">
 	<link rel="stylesheet" href="{{asset('css/fileinput.min.css')}}">
-	<link rel="stylesheet" href="{{asset('js/jcrop/jquery.Jcrop.min.css')}}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{{asset('css/cropper.css')}}">
 	<link rel="stylesheet" href="{{asset('plugins/font-awesome-4.1.0/css/font-awesome.css')}}">
 	<!-- GOOGLE FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Dosis:500,300,700,400' rel='stylesheet' type='text/css'>
@@ -78,11 +78,8 @@
 											<h3 class="text-center text-uppercase"> Add Picture</h3>
 											<hr class="p5">
 											<div class="form-group m0">
-												<div id="crop-preview" style="margin-bottom:10px;">
-													{{ HTML::image('img/user.png','Album Art',
-                                                    array('width'=>'250px', 'height'=>'250px', 'class'=>'center-block'))}}
-												</div>
-												<div id="js-preview" class="hidden"></div>
+												
+												<div class="file-preview-image"></div>
 												<div class="form-group js-browse btn btn-default">
 													<label for="image" class="control-label">Upload from device/desktop</label>
 													<input id="image" class="form-control" type="file" name="image"  accept="image/*">
@@ -163,34 +160,17 @@
 <script src="{{ asset('plugins/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{asset('js/humane.min.js') }}"></script>
 <script type="text/javascript" src="{{asset('js/fileinput.min.js') }}"></script>
-<script>
-	window.FileAPI = {
-		debug: false, // enable/disable debug mode (default is false),
-		cors: false, // if using CORS, set this to `true`
-		media: false, // if uploading directly from WebCam, set to `true`
-		staticPath: '/js/FileAPI/', // path to '*.swf' files necessary for fallbacks
-	};
-</script>
-<script type="text/javascript" src="{{asset('js/FileAPI/FileAPI.min.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/FileAPI/FileAPI.exif.js') }}"></script>
+
+
 <script type="text/javascript" src="{{asset('js/jquery.fileapi.min.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/jcrop/jquery.Jcrop.min.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/jquery.uploadPreview.min.js') }}"></script>
+<script type="text/javascript" src="{{asset('js/cropper.min.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#song").fileinput({
-			//  uploadUrl: "create3" // your upload server url
-			showUpload: false,
-			//  uploadExtraData: function() {
-			//    return {
-			//        userid: $("#userid").val(),
-			//        username: $("#username").val()
-			//      };
-			//   }
-		});
-
 		$("#image").fileinput({
 			showUpload: false,
+			initialPreview: [
+   			 '<img src='img/user.png' class='file-preview-image' alt='Desert' title='Desert'>',
+			],
 		});
 	});
 </script>
@@ -249,89 +229,10 @@
 </script>
 <script>
 	$(function() {
-		// Enable FileAPI library on the uploader element
-		$('#uploader').fileapi({
-			multiple: false,
-			maxSize : 4*1024*1024,
-			accept: '.jpeg, .jpg, .gif, .png',
-			imageSize: {minWidth: 400, minHeight: 500 },
-			// imageSize: {minWidth: 800, minHeight: 600, maxWidth: 600, maxHeight: 700 },
-			url: 'create', // The URL of the backend receiving the file uploads
-			//autoUpload: false, // Upload the file when the user selects it from browse window
-			// accept: 'image/*', // only allow images to be selected
-//	data:{caption: $('#caption').val(), genre: $('#genre').val() },
-			onComplete: function (evt, uiEvt){
-				var result = '';
-				var file = uiEvt.file;
-				var json = uiEvt.result;
-				//result += 'The name of the file is ' + json.name;
-				//result += '<br> The caption is ' + json.caption;
-				//result += '<br> The genre is ' + json.genre;
-				//$("#results").html(result);
-				window.location = json.url;
-			},
-			elements: {
-				progress: '.js-progress',
-				active: { show: '.js-upload', hide: '.js-browse' },
-				size: '.js-size',
-				preview: {
-					el: '#js-preview', // specify which element should serve as a preview
-					width:150, // specify the width of the preview image
-					height: 200 // specify the height of the preview image
-				},
-				ctrl: { upload: '.js-send', reset: '.js-reset' },
-				empty: { hide: '.js-upload' }
-			},
-			onSelect: function (evt, data){
-				data.all; // All files
-				data.files; // Correct files
-				if( data.other.length ){
-					// there were errors
-					var errors = data.other[0].errors;
-					if( errors ){
-						// Show an error if the file is bigger than the limit
-						if(errors.maxSize) humane.log("The file is too big, Max size is 4MB", { addnCls: 'humane-jackedup-error' });
-						// errors.maxFiles;
-						if(errors.minWidth) humane.log("Minimum Image width should be 400px", { addnCls: 'humane-jackedup-error' });
-						if(errors.minHeight)humane.log("Minimum Image height should be 500px", { addnCls: 'humane-jackedup-error' });
-						// errors.maxWidth;
-						// errors.maxHeight;
-					}
-				}
-				var file = data.files[0]; // Select the file
-				if( !FileAPI.support.transform ) {
-					alert('Sorry, your browser does not support cropping');
-				}
-				// Only if the image is valid, crop it
-				if( file ){
-					$('#crop-preview').show(); // Show the cropper element
-					// Upload cropped image when "Send" button is pressed
-					$('.js-send')
-							.unbind('fileapi')
-							.bind('click.fileapi', function (){
-								$('#crop-preview').hide();
-								$('#uploader').fileapi('upload');
-							});
 
-					$('#crop-preview').cropper({
-						file: file, // Use the selected image
-						bgColor: '#fff',
-						maxSize: [$('#crop-preview').width()], // Make the cropper fit inside the preview
-						onSelect: function (coords){
-							$('#uploader').fileapi('crop', file, coords);
-						}
-					});
-				}
-			}
-		});
+
 	});
-</script>
-<script>
-	// Change global options for all Humane.js notifications
-	humane.clickToClose = true;
-	humane.addnCls = 'myNotification'; // Add a class to all notifications
-	// Show an example notification
-	//humane.log("Humane.js is ready for your command!");
+		
 </script>
 </body>
 </html>

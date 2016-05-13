@@ -34,7 +34,8 @@ Route::get('test/activate','HomeController@testActivate');
 Route::get('testing/activation/{code}','HomeController@testSend');
 Route::get('testing/email','EmailController@sendTest');
 
-Route::get('activate/{confirmation_code}', '\Auth\AuthController@activateAccount');
+Route::get('activate/{confirmation_code}', 'Auth\AuthController@activateAccount');
+Route::get('login/facebook', 'Auth\AuthController@facebook');
 
 Route::get('/ajax/posts', array('uses'=>'HomeController@getPosts'));
 Route::get('/', array('uses'=>'HomeController@getIndex'));

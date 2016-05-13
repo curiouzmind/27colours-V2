@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\AuthenticateUser;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -139,6 +141,12 @@ class AuthController extends Controller
         \Session::flash('message', 'Your account couldn\'t be activated, please try again');
         return redirect('/');
     }
+
+    public function facebook(AuthenticateUser $authenticateUser, Request $request)
+    {
+        return $authenticateUser->execute($request->has('code'));
+    }
+
 
 
 }

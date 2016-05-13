@@ -42,7 +42,7 @@ class AdminAuthentication {
 				return $next($request);
 			}
 		}
-          return redirect('/confirm');
+          return redirect('/login');
 
 	}
 

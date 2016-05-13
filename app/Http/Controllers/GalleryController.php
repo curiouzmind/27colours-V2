@@ -18,7 +18,7 @@ class GalleryController extends Controller
      */
     public function __construct()
      {
-        $this->middleware('confirm',['only'=>['getUpload']]);
+        $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
     }
 
     public function getUpload()

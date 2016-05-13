@@ -25,4 +25,21 @@ class EmailController extends Controller
 
        // return response()->json(['message' => 'Request completed'])        
 	}
+
+	public function resendConfirmation(Request $request)
+	{
+		$email=\Auth::user()->email;
+		$data=[];
+		$confirmation_code = str_random(40);
+		\Mail::send('emails.activate',['confirmation_code'=> $confirmation_code,'data' =>$data], function ($message)
+        {
+            $message->from('support@27colours.com', 'Resend Confirmation')
+            		->subject('Activate your 27colours account')
+					->to($email);
+
+        });
+			return redirect('/profile');
+
+
+	}
 }

@@ -19,7 +19,7 @@ class SongController extends Controller
      */
     public function __construct()
      {
-        $this->middleware('confirm',['only'=>['getUpload','getUploadLink',]]);
+        $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
     }
 
     public function getShow($id)
