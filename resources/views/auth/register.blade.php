@@ -48,7 +48,8 @@
                 <div class="col-md-4 col-md-offset-7">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <p><span class="glyphicon glyphicon-lock"></span> Sign Up</p>
+                            <h4><span class="fa fa-unlock-alt"></span> Connect with <a href="#">Facebook</a> or Sign-up below  <i class="fa fa-arrow-down"></i></h4>
+                            {{--<p><span class="glyphicon glyphicon-lock"></span> Sign Up</p>--}}
                         </div>
                         <div class="panel-body">
                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
@@ -115,7 +116,7 @@
                                                 @endif
 
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="form-group last">

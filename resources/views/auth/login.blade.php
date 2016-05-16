@@ -48,7 +48,7 @@
                     <div class="col-md-4 col-md-offset-7">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <p><span class="glyphicon glyphicon-lock"></span> Sign in</p>
+                                <h4><span class="fa fa-unlock-alt"></span> Connect with <a href="#">Facebook</a> or Sign-in below  <i class="fa fa-arrow-down"></i></h4>
                                 @if (Session::has('errors'))
                                     <div class="alert alert-error alert-danger m0" role="alert">{!! Session('errors') !!}</div>
                                 @endif
