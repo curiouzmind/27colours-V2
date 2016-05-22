@@ -11,11 +11,12 @@
 |
 */
 Route::group(['middleware' => ['web']], function () {
-     Route::auth();
-});
+  
+
 Route::get('/privacyPolicy', 'ProfileController@privacyPolicy');
 
 Route::get('song/show/{id}', 'SongController@getShow');
+//Route::get('song')
 Route::controller('/song', 'SongController');
 
 Route::get('/video/show/{id}', 'VideoController@getShow');
@@ -25,6 +26,8 @@ Route::controller('/video', 'VideoController');
 Route::get('/gallery/show/{id}', 'GalleryController@getShow');
 Route::controller('/gallery', 'GalleryController');
 Route::Controller('admin','AdminController');
+
+ Route::auth();
 
 
 Route::get('/user/show/{id}', 'ProfileController@getShow');
@@ -36,10 +39,13 @@ Route::get('testing/email','EmailController@sendTest');
 
 Route::get('activate/{confirmation_code}', 'Auth\AuthController@activateAccount');
 Route::get('login/facebook', 'Auth\AuthController@facebook');
+//Route::post('search/')
 
 Route::get('/ajax/posts', array('uses'=>'HomeController@getPosts'));
 Route::get('/', array('uses'=>'HomeController@getIndex'));
 Route::controller('/', 'HomeController');
+
+});
 
 
 

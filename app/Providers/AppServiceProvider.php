@@ -16,6 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->bind(
+            'App\Repositories\SongRepoInterface',
+            'App\Repositories\SongRepo'
+            );
+
         \View::composer('*', function($view)
         {
              $view->recentSongs = Song::take(4)->orderBy('id','desc')->get();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Repositories\SongRepoInterface;
 use App\Song;
 use Input;
 use View;
@@ -12,33 +13,38 @@ use Redirect;
 
 class SongController extends Controller
 {
+    protected $song;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(SongRepoInterface $song)
      {
+        $this->song=$song;
         $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
     }
 
     public function getShow($id)
     {   
-        $song=Song::findorfail($id);
+        //$song=Song::findorfail($id);
+        $song=$this->song->find($id);
+        //dd($song);
         $id= $song->id;
         $genre= $song->genre;
-        $reSongs =  Song::where('genre', '=', $genre)->take(5)->orderBy('id','desc')->get();
+        //$reSongs =  Song::where('genre', '=', $genre)->take(5)->orderBy('id','desc')->get();
+        $reSongs= $this->song->recentSong($genre);
 
          return View::make('song.single')
         ->with('song',$song)
          ->with('genre', $genre)
         ->with('reSongs',$reSongs);
     }
+    
 //  desktop upload page
     public function getUpload()
     {
-    if (Auth::check()) {
-
+    
      $user = Auth::user();
      $s_count= $user->songs()->count();
      if ($s_count < 10 ) {
@@ -47,61 +53,22 @@ class SongController extends Controller
             else {
                 return View::make('notice');
             }
-        }
-         else {
-            return Redirect::to('/profile/#error')->with('error', 'Please Login / SignUp to upload');
-        }
      }
-//    soundcloud upload page
-    public function getUploadLink()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $s_count= $user->songs()->count();
-            if ($s_count < 10 ) {
-                return View::make('song.upload_track_link');
-            }
-            else {
-                return View::make('notice');
-            }
-        }
-        else {
-            return Redirect::to('/profile/#error')->with('error', 'Please Login / SignUp to upload');
-        }
-    }
-
     
 
 
 	public function postCreate2(Request $request)
     {
-        //dd($request->all());
-        $music = [
-            'youtube' => $request->get('youtube'),
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'image' => $request->file('image'),
-            'song' =>$request->file('song'),
-            'genre' => $request->get('genre'),
-            'soundcloud' => $request->get('soundcloud'),
-
-
-        ];
-
-        $rules = [
+        $this->validates($request,[
             'youtube' => 'min:5',
             'title' => 'required',
             'description' => 'required|min:5',
             'image'=> 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000',
             'song' => 'max:20000',
             'genre' => 'required',
-            'soundcloud' => 'min:5',
-         ];
+            'soundcloud' => 'min:5'
+         ]);
 
-        $validator = \Validator::make($music, $rules);
-        if ($validator->passes())
-        {
-           // \DB::beginTransaction();
             $song =new Song;
             if($request->has('soundcloud'))
             {
@@ -181,11 +148,6 @@ class SongController extends Controller
             ->with('notices', 'New song added!!!');
 
 
-        }
-
-        return Redirect::to('/song/upload2')
-        ->with('errors', $validator->messages())
-        ->withInput(\Input::only('title','description','youtube','soundcloud','genre'));
      }
 
      public function postCreate3()
@@ -369,4 +331,7 @@ class SongController extends Controller
          return Redirect::to('/profile')
          ->with('noticeg', 'New Song added!!!');
     }
+
+   
+
 }

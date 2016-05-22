@@ -93,9 +93,10 @@
     </div>
     <div class="[ bootsnipp-search animate ]">
         <div class="[ container ]">
-            <form action="#" method="GET" role="search">
+            <form action="/search" method="GET" role="search">
+            {{ csrf_field() }}
                 <div class="[ input-group ]">
-                    <input type="text" class="[ form-control ]" name="q" placeholder="Search for Tracks, Videos, Pictures & Talents">
+                    <input type="text" class="[ form-control ]" name="search" placeholder="Search for Tracks, Videos, Pictures & Talents">
 						<span class="[ input-group-btn ]">
 							<button class="[ btn btn-primary ]" type="submit"><span class="[ glyphicon glyphicon-search ]"></span></button>
                             <button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>

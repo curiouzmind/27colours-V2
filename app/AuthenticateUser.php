@@ -1,19 +1,17 @@
 <?php namespace App;
 
 use Laravel\Socialite\Contracts\Factory as Socialite;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Contracts\Auth\Authenticatable as Authenticatable;
 use App\User;
 
 
-class AuthenticateUser {
+class AuthenticateUser{
 	private $socialite;
-	private $auth;
 	private $users;
-	public function __construct(User $users,Socialite $socialite, Authenticatable $auth)
+	public function __construct(User $users,Socialite $socialite)
 	{
 		$this->users =$users;
 		$this->socialite =$socialite;
-		$this->auth =$auth;
 		
 	}
 
@@ -24,7 +22,8 @@ class AuthenticateUser {
 
 		$user = $this->users->findByEmail($this->getFacebookUser());
 		\Auth::login($user, true);
-		//$this->auth->login($user, true);
+
+		//$this->users->login($user, true);
 		return redirect('/profile');
 		//dd($user);
 	}

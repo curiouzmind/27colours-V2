@@ -160,4 +160,27 @@ class HomeController extends Controller
     {
        return "Activation code:".$code;
     }
+
+    public function getSearch(Request $request)
+    {
+     // dd($request->get('search'));
+      $term = $request->get('search');
+      $songs = Song::where('title','LIKE','%'. $term .'%')->paginate(10);
+      $videos= Video::where('title','LIKE','%'. $term .'%')->paginate(10);
+      $galleries=Gallery::where('caption','LIKE','%'. $term .'%')->paginate(10);
+      $talents= User::where('username','LIKE','%'.$term.'%')->paginate(10);
+      //dd($songs);
+      return view('layout.search_result',compact('songs','videos','galleries','talents','term'));
+      //dd(compact('song','video','gallery'));
+    }
+     public function getSlug()
+    {
+        $songs=Song::all();
+        foreach($songs as $song)
+        {
+          $song->slug=str_slug($song->title);
+          $song->save();
+        }
+        dd($songs);
+    }
 }

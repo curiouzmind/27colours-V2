@@ -3,13 +3,13 @@ namespace App\Services\Mailers;
 
 abstract class Mailer
 {
-	public function emailTo($person, $view, $data, $subject,$from)
+	public function emailTo($person, $view, $data, $subject, $sender)
 	{
-		\Mail::send($view, $data, function($message) use($person, $subject)
+		\Mail::send($view, $data, function($message) use($person, $subject,$sender)
 		{
 			$message->to($person->email)
-					->from($from)
-					->subject($subject);
+					->subject($subject)
+					->from($sender);
 
 		});
 	}

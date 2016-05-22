@@ -84,7 +84,7 @@ class User extends Authenticatable
     public function findByEmail($userData)
     {
         $mailer=new UserMailer();
-       // dd($userData);
+        dd($userData);
         $user=User::where('email',$userData->email)->first();
        // dd($user);
         if($user)
@@ -102,7 +102,7 @@ class User extends Authenticatable
              if( ! $user->confirmed)
              {
                 $user->confirmed=1;
-                $mailer->facebookWelcome();
+                $mailer->facebookWelcome($user);
              }
             $user->save();
 
@@ -117,14 +117,20 @@ class User extends Authenticatable
                  }
 
             $user2= User::firstOrCreate([
-                 'username'=> $userData->nickname,
+                 'username'=> isset($userData->nickname) ? $userData->nickname : 'Newbie',
                  'email' =>$userData->email,
             ]);
+            if ($userData->avatar)
+            {
 
-            $picc = new ProfilePhoto();
-            $picc->image=$userData->avatar;
-            $user2->profilePhoto()->save($picc);
-            $user2->save();
+                $picc = new ProfilePhoto();
+                $picc->image=$userData->avatar;
+                $user2->profilePhoto()->save($picc);
+                $user2->save();
+            }
+
+                    $user2->confirmed=1;
+                    $mailer->facebookWelcome($user2);
             return $user2;
         }
     }
