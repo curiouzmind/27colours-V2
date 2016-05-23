@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Didn't receive an email confirmation from 27Colours?</div>
+                    <div class="panel-heading"><h4>Didn't receive an email confirmation from 27Colours?Please check your spam and junk folders also.. </h4></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -13,14 +13,9 @@
                             </div>
                         @endif
 
-                      <!--  <form class="form-horizontal" role="form" method="POST" action="/testing/email">
-                            {!! csrf_field() !!} -->
-
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                   <!-- <button type="submit" class="btn btn-danger btn-lg">
-                                    </button>-->
-                                       <a class="btn btn-danger btn-lg" href="/testing/email"><i class="fa fa-btn fa-envelope"></i> Resend Email Confirmation</a>
+                                <div class="col-md-6 col-md-offset-4">                           
+                                   <a class="btn btn-danger btn-md" href="/testing/email"><i class="fa fa-btn fa-envelope"></i> Resend Email Confirmation</a>
                                     
                                 </div>
                             </div>

@@ -105,4 +105,14 @@
             </form>
         </div>
     </div>
+    @if ( Auth::check()  &&  ! Auth::user()->confirmed)
+      <div class="bs-info" style="text-align:center">
+            <div class="alert alert-info fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+               <p> <b>Note!</b> Please confirm your account before you begin/continue to upload files.
+                Please click <a href="/confirm"><b>HERE</b></a> on how to</p>
+             </div>
+      </div>
+   @endif
+
 </nav>

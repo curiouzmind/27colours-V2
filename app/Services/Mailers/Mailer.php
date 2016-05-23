@@ -5,7 +5,7 @@ abstract class Mailer
 {
 	public function emailTo($person, $view, $data, $subject, $sender)
 	{
-		\Mail::send($view, $data, function($message) use($person, $subject,$sender)
+		\Mail::send($view, ['data'=>$data], function($message) use($person, $subject,$sender)
 		{
 			$message->to($person->email)
 					->subject($subject)
@@ -14,7 +14,7 @@ abstract class Mailer
 		});
 	}
 
-	public function sendTestTo($users,$view, $data,$subject,$sender)
+	public function sendTo($users,$view, $data,$subject,$sender)
 	{
 		\Mail::send($view, ['data' =>$data ], function ($message) use($sender,$subject,$users)
         {

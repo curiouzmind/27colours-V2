@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Didn't receive an email confirmation from 27Colours?</div>
+                    <div class="panel-heading"><h4>Didn't receive an email confirmation from 27Colours?Please check your spam and junk folders also.. </h4></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">

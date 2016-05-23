@@ -31,9 +31,9 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getIndex()
-  {
-      $songs = Song::orderBy('id','desc')->paginate(4);
-      $tags = Tag::lists('name', 'id');
+  {    
+         $songs = Song::orderBy('id','desc')->paginate(4);
+         $tags = Tag::lists('name', 'id');
         $videos= Video::orderBy('id', 'desc')->paginate(3);
         $galleries = Gallery::orderBY('id', 'desc')->paginate(8);
         $talents = User::orderBY('created_at', 'desc')
@@ -182,5 +182,10 @@ class HomeController extends Controller
           $song->save();
         }
         dd($songs);
+    }
+
+    public function getConfirm()
+    {
+      return view('emails.confirm');
     }
 }

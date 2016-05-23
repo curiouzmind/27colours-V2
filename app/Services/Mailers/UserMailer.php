@@ -41,7 +41,18 @@ class UserMailer extends Mailer
         $this->emailTo($user, $view, $data, $subject,$sender);
     }
 
-    public function sentTestActivation()
+    public function sendActivation($user, $code)
+    {
+        $data=[];
+        $data['confirmation_code'] = $code;
+        $subject ='Activate your 27colours account';
+        $sender  ='support@27colours.com';
+        $view    ='emails.activate';
+        $data['username']= $user->username;
+        $this->emailTo($user, $view, $data, $subject,$sender);
+    }
+
+    public function sendTestActivation()
     {
       $data=[];
       $data['username']="sammy and bolaji";
@@ -50,7 +61,7 @@ class UserMailer extends Mailer
       $sender= 'support@27colours.com';
       $view ='emails.activate';
       $user=['gbolahanalade@gmail.com','samizares@beazea.com'];
-       $this->sendTestTo($user, $view, $data, $subject,$sender);
+       $this->sendTo($user, $view, $data, $subject,$sender);
     }
     
 }
