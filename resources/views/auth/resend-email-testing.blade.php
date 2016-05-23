@@ -17,11 +17,11 @@
                             {!! csrf_field() !!} -->
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-6 col-md-offset-1">
                                    <!-- <button type="submit" class="btn btn-danger btn-lg">
                                     </button>-->
                                        <a class="btn btn-danger btn-lg" href="/testing/email"><i class="fa fa-btn fa-envelope"></i> Resend Email Confirmation</a>
-                                    
+
                                 </div>
                             </div>
                        <!-- </form> -->
