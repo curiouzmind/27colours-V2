@@ -37,6 +37,13 @@ Route::get('test/activate','HomeController@testActivate');
 Route::get('testing/activation/{code}','HomeController@testSend');
 Route::get('testing/email','EmailController@sendTest');
 
+// testing routes( just swoop the name of the view file below with the view you want to test)
+// and go to http://localhost:8090/testing/view to view the page
+Route::get('testing/view', function(){
+    return view('auth.resend-email-testing');
+});
+Route::get('testing/email','EmailController@sendTest');
+
 Route::get('activate/{confirmation_code}', 'Auth\AuthController@activateAccount');
 Route::get('login/facebook', 'Auth\AuthController@facebook');
 //Route::post('search/')
@@ -46,8 +53,6 @@ Route::get('/', array('uses'=>'HomeController@getIndex'));
 Route::controller('/', 'HomeController');
 
 });
-
-
 
 
 //Route::get('/home', 'HomeController@index');

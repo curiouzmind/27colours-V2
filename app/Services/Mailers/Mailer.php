@@ -13,4 +13,15 @@ abstract class Mailer
 
 		});
 	}
+
+	public function sendTestTo($users,$view, $data,$subject,$sender)
+	{
+		\Mail::send($view, ['data' =>$data ], function ($message) use($sender,$subject,$users)
+        {
+            $message->from($sender, '27colours')
+            		->subject($subject)
+					->to($users);
+
+        });
+	}
 }

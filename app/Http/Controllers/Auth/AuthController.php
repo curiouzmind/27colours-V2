@@ -120,7 +120,7 @@ class AuthController extends Controller
 
     public function sendEmail(array $data)
     {
-        \Mail::send('emails.activate', ['confirmation_code' => $data['confirmation_code'], 'data'=>$data], function($message) use ($data) {
+        \Mail::send('emails.activate', ['data'=>$data], function($message) use ($data) {
                 $message->to($data['email'], $data['username'])
                         ->from('support@27colours.com')
                     ->subject('27colours: Verify your email address');

@@ -40,5 +40,17 @@ class UserMailer extends Mailer
         $data    =['username'=> $user->username];
         $this->emailTo($user, $view, $data, $subject,$sender);
     }
+
+    public function sentTestActivation()
+    {
+      $data=[];
+      $data['username']="sammy and bolaji";
+      $data['confirmation_code'] = str_random(6);
+      $subject ='Testing activation emails';
+      $sender= 'support@27colours.com';
+      $view ='emails.activate';
+      $user=['gbolahanalade@gmail.com','samizares@beazea.com'];
+       $this->sendTestTo($user, $view, $data, $subject,$sender);
+    }
     
 }
