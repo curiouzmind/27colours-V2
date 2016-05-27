@@ -5,6 +5,25 @@
 @section('css-links')
     <link rel="stylesheet" href="{{asset('/plugins/soundmanager/css/bar-ui.css')}}">
     <link rel="stylesheet" href="{{asset('/plugins/soundmanager/css/demo.css')}}">
+    <style type="text/css">
+        .liked,
+        .liked .fa,
+        .not-liked:hover,
+        .not-liked .fa{
+            color:#fff;
+            background:#CB291F;
+
+        }
+        .not-liked,
+        .not-liked .fa,
+        .liked:hover,
+        .liked:hover .fa
+        {
+            background:#9C0000;
+            color:#fff;
+
+        }
+    </style>
 @stop
 @section('header')
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -34,6 +53,19 @@
           <div class="col-md-12">
             <div class="container">
                 <ul class="list-inline pull-right m5">
+                    <li>                   
+                    {{--*/ $userLike=App\Like::where(['likeable_id'=>$song->id,'user_id'=>Auth::id()])->first() /*--}}
+        
+                    <form id="likesForm" action="">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" id="songID" name="song_id" value="{{$song->id}}">
+                                <button type="submit" id="likeBtn" class="btn btn-border {{$userLike ? 'liked' : 'not-liked'}}">
+                                 <i class="fa fa-heart"></i>
+                                 {{ $userLike ? 'Unlike' : 'Like' }} 
+                                    <span class="badge badge-inverse">
+                                    {{$song->likes->count()}} </span></button>
+                    </form>
+                    </li>
                     <li>
                         <a href="{{asset($song->song)}}" download="download" title="Download &quot;{{$song->title}}&quot;"
                            class="btn btn-default text-capitalize"><i class="fa fa-download"></i> Download this track</a>
@@ -209,5 +241,37 @@
                 // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
             }
         });
+    </script>
+
+<script type="text/javascript">
+
+        $(document).ready(function() {
+    $('#likesForm').submit(function() {
+              var song_id= $('#songID').val();
+
+              $.ajax({ url: "{{ URL::to('/song/process')}}",
+                    data: {song_id: song_id},
+                    dataType: 'json',
+                    type: 'post',
+                 success: function(output) {
+                     $.each(output.data, function(){
+                        if(this.id==0){
+                            console.log(this.text);
+                            $('#likeBtn').empty().html('<button id="likeBtn" type="submit" class="btn btn-border liked"><i class="fa fa-heart"></i>Like<span class="badge badge-inverse">' +this.count+ '</span></button>');
+                      }
+
+                        if(this.id==1){
+                         console.log(this.text);
+                      $('#likeBtn').empty().html('<button id="likeBtn" type="submit" class="btn btn-border not-liked"><i class="fa fa-heart"></i>Unlike <span class="badge badge-inverse">' + this.count + '</span></button>');
+                      }
+
+                  });
+
+                         }
+                });
+
+               return false;
+                }); // end submit()
+});
     </script>
 @stop

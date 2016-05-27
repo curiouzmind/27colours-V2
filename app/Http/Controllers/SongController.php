@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Repositories\SongRepoInterface;
 use App\Song;
 use Input;
+use App\Like;
 use View;
 use Auth;
 use Redirect;
@@ -59,7 +60,7 @@ class SongController extends Controller
 
 	public function postCreate2(Request $request)
     {
-        $this->validates($request,[
+        $this->validate($request,[
             'youtube' => 'min:5',
             'title' => 'required',
             'description' => 'required|min:5',
@@ -85,8 +86,9 @@ class SongController extends Controller
             {
     
                 $music=$request->file('song');
-                $song_fileName= $music->getClientOriginalName();
-                $m_name = str_random(6).'_'.$song_fileName;
+                //$song_fileName= $music->getClientOriginalName();
+                $song_fileName='.mp3';
+                $m_name = str_random(15).$song_fileName;
                 $desPath= public_path('img/songs/');
                 $upload_success = $music->move($desPath, $m_name);
                 $hold = 'img/songs/'.$m_name;
@@ -139,33 +141,39 @@ class SongController extends Controller
                      ->with('errors', 'Either Upload Song directly OR Supply your Soundcloud link, not both!!!');              
             }
     
-             return Redirect::to('/profile'.'#songs')
-             ->with('noticev', 'New song added!!!');
-
-           // \DB::commit();
-
             return Redirect::to('/profile'.'#songs')
             ->with('notices', 'New song added!!!');
 
 
      }
 
-     public function postCreate3()
-     {
-     	$caption=Input::get('caption');
-		$url='http://demo-27c.curiouzmind.com/profile';
-		$file2 = Input::file('image');
-		$filename2 = str_random(16);
-		$extension2 = $file2->getClientOriginalExtension();
-		$size2 = $file2->getSize();
-		$fullName2 = $filename2.'_'.$extension2;
-		$upload_success = $file2->move('uploads', $fullName2);
-		if( $upload_success ) {
-		return Response::json([ 'caption'=>$caption,'name2' => $fullName2, 'url' => $url], 200);
-		} else {
-			return Response::json('error', 400);
-		}
-     }
+     public function postProcess(Request $request)
+    {
+         //dd($request->all());
+        $song_id=$request->get('song_id');
+        $song=Song::findorfail($song_id);
+        //$user_id=\Auth::id();
+        //$userLikes= \Auth::user()->likes->lists('id')->all();
+        $matchLike =['likeable_id'=>$song_id,'user_id'=>\Auth::id()];
+        $userLike=Like::where($matchLike)->first();
+        //dd($userLike);
+
+
+        if($userLike == null){
+            $like=new Like();
+                $like->user_id=\Auth::id();
+                $song->likes()->save($like);
+                $data[]=array('id' =>1, 'count' => $song->likes->count(), 'text'=>'not-liked');
+                 return \Response::json(['data'=> $data]);
+          }
+         else {
+     
+             \Auth::user()->likes()->delete($userLike);
+             $data[]=array('id' =>0, 'count' => $song->likes->count(), 'text'=>'liked');
+             return \Response::json(['data'=> $data]);
+          }
+
+    }
 
 
      public function getEdit(Song $song)

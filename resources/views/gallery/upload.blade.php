@@ -72,26 +72,19 @@
 						</div>
 						<div class="panel-body" style="min-height:300px;">
 							<div id="uploader" class="row">
+								<form role="form" id="gallery-upload" method="post" enctype="multipart/form-data" action="create">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="row setup-content" id="step-1">
 									<div class="col-xs-12">
 										<div class="col-md-12">
 											<h3 class="text-center text-uppercase"> Add Picture</h3>
 											<hr class="p5">
-											<div class="form-group m0">
+											<div class="form-group">
+                                                <label for="image" class="control-label">Album Art</label>
+                                                <input id="image" class="form-control" type="file" name="image"  accept="image/*"/>
+                                                <small class="help-block">*Required</small>
+                                            </div>
 												
-												<div class="file-preview-image"></div>
-												<div class="form-group js-browse btn btn-default">
-													<label for="image" class="control-label">Upload from device/desktop</label>
-													<input id="image" class="form-control" type="file" name="image"  accept="image/*">
-												</div>
-												<div class="js-upload" style="display: none">
-													<div class="progress" style="margin-bottom:0;">
-														<div class="js-progress progress-bar progress-bar-info"></div>
-													</div>
-													<span class="btn-txt">Uploading (<span class="js-size"></span>)</span>
-												</div>
-												<small class="help-block">*Required | *Maximum of 10 uploads | *Only Jpeg & Png formats allowed</small>
-											</div>
 											<hr>
 											<button class="btn btn-primary nextBtn btn-md pull-right" type="button" >Next</button>
 										</div>
@@ -104,13 +97,12 @@
 											<hr class="p5">
 											<div class="form-group">
 												<label class="control-label">Enter Picture Caption</label>
-												<input required="required" type="text" class="form-control" id="title"
-													   name="title" placeholder="e.g. Chilling at the beach."/>
+												<input required="required" type="text" class="form-control" id="title" name="caption" placeholder="e.g. Chilling at the beach."/>
 												<small class="help-block">*Required</small>
 											</div>
 											<div class="form-group">
 												<label for="category" class="control-label">Select Picture Category</label>
-												<select class="form-control" name="category" id="category" required="required">
+												<select class="form-control" name="cat" id="category" required="required">
 													<option>Modelling</option>
 													<option>Others</option>
 												</select>
@@ -121,6 +113,7 @@
 										</div>
 									</div>
 								</div>
+								</form>
 							</div>
 						</div>
 						<div class="panel-footer">
@@ -160,19 +153,12 @@
 <script src="{{ asset('plugins/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{asset('js/humane.min.js') }}"></script>
 <script type="text/javascript" src="{{asset('js/fileinput.min.js') }}"></script>
-
-
-<script type="text/javascript" src="{{asset('js/jquery.fileapi.min.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/cropper.min.js') }}"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#image").fileinput({
-			showUpload: false,
-			initialPreview: [
-   			 '<img src='img/user.png' class='file-preview-image' alt='Desert' title='Desert'>',
-			],
-		});
-	});
+    $(document).ready(function() {
+        $("#image").fileinput({
+            showUpload: false,
+        });
+    });
 </script>
 <script>
 	$(document).ready(function () {
@@ -226,13 +212,7 @@
 
 		$('div.setup-panel div a.btn-primary').trigger('click');
 	});
-</script>
-<script>
-	$(function() {
+	</script>
 
-
-	});
-		
-</script>
 </body>
 </html>

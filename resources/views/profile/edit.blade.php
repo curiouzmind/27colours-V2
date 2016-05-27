@@ -50,7 +50,9 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-5">
                     <form data-ajax="false" class="form login-page main-content center-block" id="upload" enctype="multipart/form-data" method="post" action="/profile/edit">
-                        {{Form::hidden('id', $user->id)}}
+                            {!! csrf_field() !!}
+                        <input type="hidden" name="id" value="{{$user->id}}">
+                        
                         <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="text-center"><span class="fa fa-user"></span> Update Profile Info</h3>
@@ -63,45 +65,39 @@
                         </div>
                         <div class="panel-body" style="min-height:300px;">
                             <div class="form-group">
-                                {{ Form::label('fname', 'First-Name:') }}
-                                {{ Form::text('fname', $user->first_name, ['class' => 'form-control', 'required' => '']) }}
+                                {!! Form::label('fname', 'First-Name:') !!}
+                                {!! Form::text('fname', $user->first_name, ['class' => 'form-control', 'required' => '']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('lname', 'Last-Name:') }}
-                                {{ Form::text('lname', $user->last_name, ['class' => 'form-control', 'required' => '']) }}
+                                {!! Form::label('lname', 'Last-Name:') !!}
+                                {!! Form::text('lname', $user->last_name, ['class' => 'form-control', 'required' => '']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('username', 'UserName:') }}
-                                {{ Form::text('username', $user->username, ['class' => 'form-control', 'required' => '']) }}
+                                {!! Form::label('username', 'UserName:') !!}
+                                {!! Form::text('username', $user->username, ['class' => 'form-control', 'required' => '']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('talents', 'Enter your talent') }}
-                                {{Form::select('talents', [
-                                    'dancing' => 'Dancer',
-                                    'singing'=> 'Musician',
-                                    'comedy'=> 'Comedian',
-                                    'modelling'=> 'Model',
-                                    'others' => 'Others'], 0, ['class' => 'form-control']) }}
+                                {!! Form::select('talents', $talents, $user->talents, ['class' => 'form-control']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('facebook', 'Enter the full url to your Facebook profile') }}
-                                {{ Form::text('facebook', $user->facebook, ['class' => 'form-control', 'placeholder'=>'Facebook']) }}
+                                {!! Form::label('facebook', 'Enter the full url to your Facebook profile') !!}
+                                {!! Form::text('facebook', $user->facebook, ['class' => 'form-control', 'placeholder'=>'Facebook']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('twitter', 'Enter the full url to your Twitter account') }}
-                                {{ Form::text('twitter', $user->twitter, ['class' => 'form-control', 'placeholder'=>'Twitter']) }}
+                                {!! Form::label('twitter', 'Enter the full url to your Twitter account') !!}
+                                {!! Form::text('twitter', $user->twitter, ['class' => 'form-control', 'placeholder'=>'Twitter']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('soundcloud', 'Enter the full url to your Soundclound account') }}
-                                {{ Form::text('soundcloud', $user->soundcloud, ['class' => 'form-control', 'placeholder'=>'Soundcloud']) }}
+                                {!! Form::label('soundcloud', 'Enter the full url to your Soundclound account') !!}
+                                {!! Form::text('soundcloud', $user->soundcloud, ['class' => 'form-control', 'placeholder'=>'Soundcloud']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('youtube', 'Enter the full url to your youtube') }}
-                                {{ Form::text('youtube', $user->youtube, ['class' => 'form-control', 'placeholder'=>'Youtube']) }}
+                                {!! Form::label('youtube', 'Enter the full url to your youtube') !!}
+                                {!! Form::text('youtube', $user->youtube, ['class' => 'form-control', 'placeholder'=>'Youtube']) !!}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('tagline', 'Enter a brief bio') }}
-                                {{ Form::text('tagline', $user->tagline, ['class' => 'form-control', 'placeholder'=>'Bio']) }}
+                                {!! Form::label('tagline', 'Enter a brief bio') !!}
+                                {!! Form::text('tagline', $user->tagline, ['class' => 'form-control', 'placeholder'=>'Bio']) !!}
                             </div>
                         </div>
                         <div class="panel-footer">

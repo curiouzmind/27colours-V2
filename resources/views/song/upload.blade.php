@@ -76,7 +76,8 @@
                         </div>
                         <div class="panel-body" style="min-height:300px;">
                             <form role="form" id="song-upload" method="post" enctype="multipart/form-data" action="create2">
-                                {{ csrf_field() }}
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{csrf_field()}}
                                 <div class="row setup-content" id="step-1">
                                     <div class="col-xs-12">
                                         <div class="col-md-12">

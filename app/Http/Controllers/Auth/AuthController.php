@@ -84,7 +84,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-       // \DB::beginTransaction();
         $data=[];
         $validator = $this->validator($request->all());
 
@@ -95,7 +94,6 @@ class AuthController extends Controller
         }
 
         $user= $this->create($request->all());
-       // dd($user);
         if($user){
             $data = array(
                 'username' => $user->username,
@@ -105,11 +103,11 @@ class AuthController extends Controller
             $this->sendEmail($data);
         } 
   
-        \Session::flash('flash_reg','Thank you for registering.Please check 
-            your email account to activate your 27colours Profile before uploading your pics/songs/videos.');
-         return redirect('/login');
-        //Auth::guard($this->getGuard())->login($this->create($request->all()));
-        //return redirect($this->redirectPath());
+        
+         return redirect('/login')
+                        ->with('flash_reg','Thank you for registering.Please check 
+                        your email to activate your account');
+        
     }
 
     public function createConfirmationCode()
@@ -128,25 +126,9 @@ class AuthController extends Controller
 
     }
 
-     public function activateAccount($code, User $user)
-    {
-
-        if($user->accountIsActive($code)) {
-
-            \Session::flash('flash_activate', 'Success, your account has been activated.');
-            return redirect('/profile');
-
-        }
-
-        \Session::flash('message', 'Your account couldn\'t be activated, please try again');
-        return redirect('/');
-    }
 
     public function facebook(AuthenticateUser $authenticateUser, Request $request)
     {
         return $authenticateUser->execute($request->has('code'));
     }
-
-
-
 }

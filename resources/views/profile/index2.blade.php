@@ -45,7 +45,7 @@
                        aria-haspopup="true" aria-expanded="false"> Add Songs <span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li><a href="/song/upload">Upload from device / desktop</a></li>
-                        <li><a href="/song/upload_track_link">Upload with Soundcloud Link</a></li>
+                       <!-- <li><a href="/song/upload">Upload with Soundcloud Link</a></li> -->
                     </ul>
                 </li>
                 <li class="p50 dropdown">
@@ -53,7 +53,7 @@
                        aria-haspopup="true" aria-expanded="false"> Add Videos <span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li><a href="/video/upload">Upload from device / desktop</a></li>
-                        <li><a href="/video/upload_video_link">Upload with Youtube Link</a></li>
+                       <!-- <li><a href="/video/upload">Upload with Youtube Link</a></li> -->
                     </ul>
                 </li>
                 <li class="p50"><a href="/gallery/upload" class="btn btn-picture btn-sm">Add Pictures</a></li>
@@ -80,21 +80,17 @@
         <div class="container">
             <div class="row">
                 <!-- Errors, Alerts -->
-                @if(Session::has('flash_reg'))
-                    <div class="alert alert-success"><em> {!! session('flash_login') !!}</em></div>
-                @endif
 
-                @if(Session::has('flash_activate'))
-                    <div class="alert alert-success"><em> {!! session('flash_activate') !!}</em></div>
+                @if (Session::has('errors'))
+                    div class="alert alert-error fade in">
+                   <a href="#" class="close" data-dismiss="alert">&times;</a>
+                           <p> {{{ Session::get('errors') }}} </p>
                 @endif
-
-                @if (Session::get('errors'))
-                    <p class="alert alert-error alert-danger fade in" role="alert"><a>
-                            {{{ Session::get('errors') }}} <span aria-hidden="true">&times;</span></a></p>
-                @endif
-                @if (Session::get('notices'))
-                    <p class="btn alert alert-info fade in" role="alert"><a>
-                            {{{ Session::get('notices') }}} <span class="pull-right" aria-hidden="true">&times;</span></a></p>
+                @if (Session::has('notices'))
+                   <div class="alert alert-success fade in">
+                   <a href="#" class="close" data-dismiss="alert">&times;</a>
+                   <p> {!! Session::get('notices') !!}</p></div>
+                
                 @endif
                 {{--tab-content--}}
                 <div class="col-md-8">

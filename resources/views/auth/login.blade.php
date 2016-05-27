@@ -6,10 +6,7 @@
             <div class="col-md-4 col-md-offset-7">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><span class="fa fa-unlock-alt"></span> Connect with <a href="/login/facebook">Facebook</a> or Sign-in below  <i class="fa fa-arrow-down"></i></h4>
-                        @if (Session::has('errors'))
-                            <div class="alert alert-error alert-danger alert-dismissable m0" role="alert">{!! Session('errors') !!}</div>
-                        @endif
+                        <h4><span class="fa fa-unlock-alt"></span> Connect with <a class="btn btn-primary" href="/login/facebook">Facebook</a> or Sign-in below  <i class="fa fa-arrow-down"></i></h4>
 
                         @if (Session::has('error'))
                             <div class="alert alert-error alert-dismissable alert-danger m0" role="alert">{!! Session('error') !!}</div>

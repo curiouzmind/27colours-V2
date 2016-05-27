@@ -14,9 +14,10 @@
                         @endif
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">                           
-                                   <a class="btn btn-danger btn-md" href="/testing/email"><i class="fa fa-btn fa-envelope"></i> Resend Email Confirmation</a>
-                                    
+                                <div class="col-md-6 col-md-offset-1">
+                                   
+                                       <a class="btn btn-danger btn-lg" href="/testing/email"><i class="fa fa-btn fa-envelope"></i> Resend Email Confirmation</a>
+
                                 </div>
                             </div>
                        <!-- </form> -->

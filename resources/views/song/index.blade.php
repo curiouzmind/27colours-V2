@@ -2,6 +2,13 @@
     @section('title')
         <title>Tracks | 27Colours</title>
     @stop
+    @section('css-links')
+    <style type="text/css">
+    .badge .fa{
+        color: #9C0000;
+    }
+
+    </style>
     @section('content')
         <!-- page header -->
         <div class="page-banner well">
@@ -65,6 +72,10 @@
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$afrobeat->user->id))}}">{{$afrobeat->user->username}}</a>
+
+                                                <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$afrobeat->likes->count()}}
+                                                  </span>
+                                            
                                                     </p>
                                                     <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$afrobeat->timeago}}</span></p>
                                                 </div>
@@ -98,6 +109,9 @@
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$hip->user->id))}}">{{$hip->user->username}}</a>
+
+                                                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$hip->likes->count()}}
+                                                  </span>
                                                     </p>
                                                     <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$hip->timeago}}</span></p>
                                                 </div>
@@ -131,6 +145,8 @@
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
                                                     array('id'=>$rnb->user->id))}}">{{$rnb->user->username}}</a>
+                                                    <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$rnb->likes->count()}}
+                                                  </span>
                                                 </p>
                                                 <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$rnb->timeago}}</span></p>
                                             </div>
@@ -164,6 +180,9 @@
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
                                                     array('id'=>$gospel->user->id))}}">{{$gospel->user->username}}</a>
+
+                                                    <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$gospel->likes->count()}}
+                                                  </span>
                                                     </p>
                                                     <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$gospel->timeago}}</span></p>
                                                 </div>
@@ -198,6 +217,8 @@
                                                         <a class="" href="{{ action('ProfileController@getShow',
                                                     array('id'=>$highlife->user->id))}}">{{$highlife->user->username}}</a>
                                                     </p>
+                                                    <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$highlife->likes->count()}}
+                                                  </span>
                                                     <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$highlife->timeago}}</span></p>
                                                 </div>
                                             </div>
@@ -230,6 +251,8 @@
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
                                                     array('id'=>$other->user->id))}}">{{$other->user->username}}</a>
+                                                    <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$other->likes->count()}}
+                                                  </span>
                                                     </p>
                                                     <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$other->timeago}}</span></p>
                                                 </div>
@@ -251,3 +274,36 @@
             </div>
         </div>
     @stop
+    @section('scripts')
+    <script>
+    $(document).ready(function() {
+    $('.likesForm').submit(function() {
+              var biz_id= $('#bizID').val();
+
+              $.ajax({ url: "{{ URL::to('/favourites')}}",
+                    data: {biz_id: biz_id},
+                    dataType: 'json',
+                    type: 'post',
+                 success: function(output) {
+                     $.each(output.data, function(){
+                        if(this.id==0){
+                            console.log(this.text);
+                            $('#favourBtn').empty().html('<button id="favourBtn" type="submit" class="btn btn-border favorited"><i class="fa fa-heart"></i>favourite<span class="badge badge-inverse">' +this.count+ '</span></button>');
+                      }
+
+                        if(this.id==1){
+                         console.log(this.text);
+                      $('#favourBtn').empty().html('<button id="favourBtn" type="submit" class="btn btn-border not-favorited"><i class="fa fa-heart"></i>Unfavourite <span class="badge badge-inverse">' + this.count + '</span></button>');
+                      }
+
+                  });
+
+                         }
+                });
+
+               return false;
+                }); // end submit()
+});
+    </script>
+
+    @endsection

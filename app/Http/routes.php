@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => ['web']], function () {
+//Route::group(['middleware' => ['web']], function () {
   
 
 Route::get('/privacyPolicy', 'ProfileController@privacyPolicy');
@@ -28,8 +28,7 @@ Route::controller('/gallery', 'GalleryController');
 Route::Controller('admin','AdminController');
 
  Route::auth();
-
-
+//Route::post('process/like','HomeController');
 Route::get('/user/show/{id}', 'ProfileController@getShow');
 Route::controller('profile', 'ProfileController');
 Route::get('/events','profileController@getBan');
@@ -42,15 +41,16 @@ Route::get('confirmation/resend','EmailController@resendConfirmation');
 Route::get('testing/view', function(){
     return view('auth.resend-email-testing');
 });
+
 Route::get('testing/email','EmailController@sendTest');
 
-Route::get('activate/{confirmation_code}', 'Auth\AuthController@activateAccount');
+Route::get('activating/profile/{code}', 'UsersController@activateAccount');
 Route::get('login/facebook', 'Auth\AuthController@facebook');
 Route::get('/ajax/posts', array('uses'=>'HomeController@getPosts'));
 Route::get('/', array('uses'=>'HomeController@getIndex'));
 Route::controller('/', 'HomeController');
 
-});
+//});
 
 
 //Route::get('/home', 'HomeController@index');

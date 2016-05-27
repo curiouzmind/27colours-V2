@@ -181,7 +181,7 @@
 <script type="text/javascript" src="{{asset('js/fileinput.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#song").fileinput({
+        $("#video").fileinput({
             //  uploadUrl: "create3" // your upload server url
             showUpload: false,
             //  uploadExtraData: function() {

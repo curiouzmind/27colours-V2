@@ -56,144 +56,41 @@ class GalleryController extends Controller
 
     }
 
-     public function postCreate2()
+     public function postCreate(Request $request)
      {
-        $photo = [
-            'title' => Input::get('caption'),
-            'image' => Input::file('image'),
-            'genre' => Input::get('genre'),
-        ];
-
-        $rules = [
-            'title' => 'min: 2',
+        $this->validate($request,[
+            'caption' => 'min: 2',
             'image'=> 'required|image|mimes:jpeg,jpg,bmp,png,gif',
-            'genre' => 'required',
-        ];
-
-         $validator = Validator::make($photo, $rules);
-
-        if ($validator->passes()) {
+            'cat' => 'required'
+         ]);
+        
             $pic =new Gallery;
-            $pic->caption = Input::get('caption');
-            $pic->cat =Input::get('genre');
+            $pic->caption = $request->get('caption');
+            $pic->cat =$request->get('cat');
 
-             if (Input::hasFile('image'))
+             if ($request->hasFile('image'))
              {
 
-            $image = Input::file('image');
-            $filename = str_random(12);
-            $extension = $image->getClientOriginalExtension();
-            $name = $filename.'.'.$extension;
+                $image = $request->file('image');
+                $filename = $image->getClientOriginalName();
+                $name = str_random(6).'-'.$filename;
+                $desPath= public_path('img/galleries/');
+                $upload_success =$image->move($desPath,$name);
+                $pic->image ='img/galleries/'.$name;
+                $pic->user()->associate(\Auth::user());
+                $pic->save();
 
-
-           $desPath= public_path('img/galleries/');
-
-
-            $upload_success =$image->move($desPath,$name);
-            $pic->image ='img/galleries/'.$name;
-            $pic->user()->associate(Auth::user());
-            $pic->save();
-
-            return Redirect::to('/profile')
+            return Redirect::to('/profile'.'#pictures')
            ->with('notices', 'New Photos added!!!')
            ->withInput();
-         //  if ($pic) {
-        //  return Response::json(['id' => $pic->id,  'caption' => $pic->caption]);
-          //      } else {
-          //              return Response::json(['error'=> 'Error Saving picture']);
-          //         }
 
-       }
-
-      	//  return Response::json(['error' => 'Error Uploading']);
+	       }
+	
         return Redirect::to('/gallery/upload')
-        ->with('errors', $validator->messages());
-
-	}
-	//return Response::json($validation->errors()->toArray());
-        return Redirect::to('/gallery/upload')
-        ->with('errors', $validator->messages());
+        ->with('errors', 'Problem with your upload');
 
     }
 
-    public function postCreate()
-     {
-        $photo = [
-            'title' => Input::get('caption'),
-            'image' => Input::file('image'),
-            'genre' => Input::get('genre'),
-        ];
-
-        $rules = [
-            'title' => 'min: 2',
-            'image'=> 'required|image|mimes:jpeg,jpg,bmp,png,gif',
-            'genre' => 'required',
-        ];
-
-         $validator = Validator::make($photo, $rules);
-         $url='http://27colours.com/profile';
-
-        if ($validator->passes()) {
-            $pic =new Gallery;
-            $caption=Input::get('caption');
-            $pic->caption = $caption;
-            $genre =Input::get('genre');
-            $pic->cat =$genre;
-
-
- 	    $image = Input::file('image');
-             if (isset($image))
-             {
-            $filename = str_random(12);
-            $extension = $image->getClientOriginalExtension();
-            $name = $filename.'.'.$extension;
-            $desPath= public_path('img/galleries/');
-            $upload_success =$image->move($desPath,$name);
-            $pic->image ='img/galleries/'.$name;
-            $url='http://27colours.com/profile';
-            }  else{
-
-       		 return Response::json(['error'=> 'Error Uploading picture']);
-
-            }
-            	$pic->user()->associate(Auth::user());
-            	$pic->save();
-            	return Response::json(['name' => $name, 'url' => $url, 'caption'=>$caption, 'genre'=>$genre ], 200);
-
-
-       }
-
-      	  return Response::json(['error' => 'Error Uploading']);
-
-
-    }
-
-
-    public function postUploadp()
-     {
-     	//	$title=Input::get('title');
-    	//	$file = Input::file('filedata');
-	//	$filename = str_random(16);
-	//	$extension = $file->getClientOriginalExtension();
-	//	$size = $file->getSize();
-	//	$fullName = $filename.'.'.$extension;
-	//	$upload_success = $file->move('uploads', $fullName);
-		$caption=Input::get('caption');
-		$url='http://demo-27c.curiouzmind.com/profile';
-		$file2 = Input::file('image');
-		$filename2 = str_random(16);
-		$extension2 = $file2->getClientOriginalExtension();
-		$size2 = $file2->getSize();
-		$fullName2 = $filename2.'_'.$extension2;
-		$upload_success = $file2->move('uploads', $fullName2);
-		if( $upload_success ) {
-		return Response::json([ 'caption'=>$caption,'name2' => $fullName2, 'url' => $url], 200);
-		} else {
-			return Response::json('error', 400);
-		}
-
-
-    }
 
     public function getEdit()
     {
@@ -233,7 +130,7 @@ class GalleryController extends Controller
         $gallery->save();
         $file->move($desPath,$name);
 
-         return Redirect::to('/profile')
+         return Redirect::to('/profile'.'#pictures')
          ->with('noticeg', 'New Photos added!!!');
      // $gallery->image = 'http://localhost:8060/public/img'.$name;
     //  }

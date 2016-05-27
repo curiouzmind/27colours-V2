@@ -11,6 +11,7 @@ use App\Profile;
 use View;
 use Auth;
 use Redirect;
+use Input;
 
 class ProfileController extends Controller
 {
@@ -84,8 +85,9 @@ class ProfileController extends Controller
     {
         if (Auth::check())  {
             $user = Auth::user();
+            $talents=['dancing'=>'Dancing','singing'=>'Singing','comedy'=>'Comedy','others'=>'Others'];
             // $this->user = $user;
-            return View::make('profile.edit')->with('user', $user);
+            return view('profile.edit',compact('user', 'talents'));
         }
         return Redirect::to('profile/')
             ->with('errors', 'Error updating your details');
@@ -97,12 +99,12 @@ class ProfileController extends Controller
     }
 
 
-    public function postEdit()
+    public function postEdit(Request $request)
     {
         $data = [
-            'talent' => Input::get('talents'),
-            'first_name' => Input::get('fname'),
-            'last_name' => Input::get('lname')
+            'talent' => $request->get('talents'),
+            'first_name' => $request->get('fname'),
+            'last_name' => $request->get('lname')
         ];
 
         $rules = [
@@ -111,30 +113,30 @@ class ProfileController extends Controller
             'last_name'=> 'required|min:2'
         ];
 
-        $valid = Validator::make($data, $rules);
+        $valid = \Validator::make($data, $rules);
         if ($valid->passes())
         {
             //$user= User::findorFail(Input::get('id'));
-            $id=Auth::id();
+            $id=\Auth::id();
             $user= User::findorFail($id);
 
             $user->first_name= $data['first_name'];
             $user->last_name= $data['last_name'];
             $user->talents= $data['talent'];
-            $user->username= Input::get('username');
-            $user->tagline= Input::get('tagline');
-            $user->facebook=Input::get('facebook');
-            $user->twitter=Input::get('twitter');
-            $user->soundcloud=Input::get('soundcloud');
-            $user->youtube=Input::get('youtube');
+            $user->username= $request->get('username');
+            $user->tagline= $request->get('tagline');
+            $user->facebook=$request->get('facebook');
+            $user->twitter=$request->get('twitter');
+            $user->soundcloud=$request->get('soundcloud');
+            $user->youtube=$request->get('youtube');
 
             $user->save();
 
-            return Redirect::to('/profile')
+            return redirect('/profile')
                 ->with('notices','Successfully updated your page');
         }
         else{
-            return Redirect::back()
+            return back()
                 ->with('errors', $valid->messages())
                 ->withInput();
         }
@@ -152,14 +154,14 @@ class ProfileController extends Controller
     {
 
         $picture = [
-            'image' => Input::file('image'),
+            'image' => $request->file('image'),
         ];
 
         $rules = [
             'image'=> 'required|image|mimes:jpeg,jpg,bmp,png,gif',
         ];
 
-        $validator = Validator::make($picture, $rules);
+        $validator = \Validator::make($picture, $rules);
         if ($validator->passes())
         {
 

@@ -77,7 +77,7 @@ class VideoController extends Controller
             'title' => 'required|min:3',
             'description'=> 'min:5',
             'image'=> 'image|mimes:jpeg,jpg,bmp,png,gif|max:3000',
-            'video' => 'max:8000',
+            'video' => 'max:8000|mimes:mp4,MP4',
             'video_type' => 'required',
             'youtube' => 'min:5',
         ];
@@ -109,8 +109,9 @@ class VideoController extends Controller
             {
                 $vid= $request->file('video');
                 //if(isset($vid))
-                $vid_name = $vid->getClientOriginalName();
-                $v_name = str_random(6).'_'. $vid_name;
+               // $vid_name = $vid->getClientOriginalName();
+                $vid_name='.mp4';
+                $v_name = str_random(15).$vid_name;
                 $desPath= public_path('img/videos/');
                 $upload_success =$vid->move($desPath,$v_name);
                 $hold= 'img/videos/'.$v_name;

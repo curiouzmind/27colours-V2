@@ -1,5 +1,14 @@
 <nav class="[ navbar navbar-default navbar-fixed-top ][ navbar-bootsnipp animate ]" data-spy="affix" role="navigation">
     <div class="[ container ]">
+       <!-- {{Session::forget('status')}} -->
+         @if (Session::has('alert'))
+        <div class="bs-info" style="text-align:center">
+            <div class="alert {{session('alert_type')}} fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+               {{Session::get('alert')}}
+             </div>
+        </div>
+        @endif        
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="[ navbar-header ]">
             <button type="button" class="[ navbar-toggle collapsed]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">

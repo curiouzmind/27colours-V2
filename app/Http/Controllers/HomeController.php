@@ -10,6 +10,7 @@ use App\Gallery;
 use App\Talent;
 use App\User;
 use App\Tag;
+use App\Like;
 use View;
 use Response;
 
@@ -33,7 +34,6 @@ class HomeController extends Controller
     public function getIndex()
   {    
          $songs = Song::orderBy('id','desc')->paginate(4);
-         $tags = Tag::lists('name', 'id');
         $videos= Video::orderBy('id', 'desc')->paginate(3);
         $galleries = Gallery::orderBY('id', 'desc')->paginate(8);
         $talents = User::orderBY('created_at', 'desc')
@@ -48,7 +48,6 @@ class HomeController extends Controller
      return View::make('layout.home')
      ->with('songs', $songs)
      ->with('videos', $videos)
-     ->with('tags',$tags)
          ->with('galleries', $galleries)
         ->with('talents', $talents);
 
@@ -81,6 +80,8 @@ class HomeController extends Controller
         return View::make('song.index',['songs'=>$songs,'afrobeats'=>$afrobeats,'highlifes'=>$highlifes, 'rnbs'=>$rnbs,
          'hips'=>$hips, 'gospels'=>$gospels,'others'=>$others]);
     }
+
+
 
       public function getGalleries()
     {
@@ -158,6 +159,7 @@ class HomeController extends Controller
 
     public function testSend($code)
     {
+      dd('testing here');
        return "Activation code:".$code;
     }
 
@@ -188,4 +190,6 @@ class HomeController extends Controller
     {
       return view('emails.confirm');
     }
+
+    
 }
