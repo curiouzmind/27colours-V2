@@ -108,7 +108,7 @@ class User extends Authenticatable
                 $user2= $this->creatNewUser($userData); 
                 $user2->confirmed=1;          
                 $user2->save();
-               // $mailer->facebookWelcome($user2);
+                $mailer->facebookWelcome($user2);
             return $user2;
         }
     }
@@ -157,7 +157,7 @@ class User extends Authenticatable
              }
              if(!isset($user->confirmed))
              {
-               // $mailer->facebookWelcome($user);
+                $mailer->facebookWelcome($user);
                  $user->confirmed=1;
              }
              $user->sessionValue='You logged in with Facebook';
