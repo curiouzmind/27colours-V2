@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- featured songs -->
-                        <h4 class="section-sub">Search Result For Songs</h4>
+                        <h4 class="section-sub">Search Result For {{$term}}</h4>
                         <hr>
                         <div class="" id="songs">
                             {{--<div class="well well-sm">--}}
@@ -47,7 +47,7 @@
                      <div class="row">
                         <div class="col-md-12">
                         <!-- featured songs -->                           
-                            <h4 class="section-sub">Search Result for Videos</h4>
+                            <h4 class="section-sub">Search Result for {{$term}}</h4>
                             <hr class="hr-white clearfix">
                             <div class="" id="videos">
                         
@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- featured songs -->
-                        <h4 class="section-sub">Search result for galleries</h4>
+                        <h4 class="section-sub">Search result for {{$term}}.</h4>
                         <hr>
                         <div class="gallery">@include('partials.gallery')</div>
                     </div>
@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- featured songs -->
-                        <h4 class="section-sub">Search Results for users.</h4>
+                        <h4 class="section-sub">Search Results for {{$term}}.</h4>
                         <hr class="hr-white clearfix">
                         <div class="gallery">@include('partials.talent')</div>
                     
