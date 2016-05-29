@@ -2,7 +2,26 @@
 @section('title')
     <title>{{$gallery->caption ? $gallery->image : 'Caption this!'}} - {{$gallery->user->username}} | 27Colours</title>
 @stop
-@section('css-links')
+@section('styles')
+<style type="text/css">
+        .liked,
+        .liked .fa,
+        .not-liked:hover,
+        .not-liked .fa{
+            color:#fff;
+            background:#CB291F;
+
+        }
+        .not-liked,
+        .not-liked .fa,
+        .liked:hover,
+        .liked:hover .fa
+        {
+            background:#9C0000;
+            color:#fff;
+
+        }
+    </style>
 
 @stop
 @section('header')
@@ -39,6 +58,27 @@
             <div class="col-md-12">
                 <div class="container">
                     <ul class="list-inline pull-right m5">
+                     @if(Auth::guest())
+                                         <a href="/gallery/like" type="submit" class="btn btn-border not-liked">
+                                            <i class="fa fa-heart"></i> Like
+                                            <span class="badge badge-inverse"> {{$gallery->likes->count()}}</span>
+                                         </a>
+                                    @endif
+                    @if(Auth::check())
+                    <li>                   
+                    {{--*/ $userLike=App\Like::where(['likeable_id'=>$gallery->id,'user_id'=>Auth::id()])->first() /*--}}
+        
+                    <form id="likesForm" action="">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" id="galleryID" name="gallery_id" value="{{$gallery->id}}">
+                                <button type="submit" id="likeBtn" class="btn btn-border {{$userLike ? 'liked' : 'not-liked'}}">
+                                 <i class="fa fa-heart"></i>
+                                 {{ $userLike ? 'Unlike' : 'Like' }} 
+                                    <span class="badge badge-inverse">
+                                    {{$gallery->likes->count()}} </span></button>
+                    </form>
+                    </li>
+                    @endif
                         <li>
                             <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button"
                                data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
@@ -127,5 +167,36 @@
                 return $('#popover-content').html();
             }
         });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+    $('#likesForm').submit(function() {
+              var gallery_id= $('#galleryID').val();
+
+              $.ajax({ url: "{{ URL::to('/gallery/process')}}",
+                    data: {gallery_id: gallery_id},
+                    dataType: 'json',
+                    type: 'post',
+                 success: function(output) {
+                     $.each(output.data, function(){
+                        if(this.id==0){
+                            console.log(this.text);
+                            $('#likeBtn').empty().html('<button id="likeBtn" type="submit" class="btn btn-border liked"><i class="fa fa-heart"></i>Like<span class="badge badge-inverse">' +this.count+ '</span></button>');
+                      }
+
+                        if(this.id==1){
+                         console.log(this.text);
+                      $('#likeBtn').empty().html('<button id="likeBtn" type="submit" class="btn btn-border not-liked"><i class="fa fa-heart"></i>Unlike <span class="badge badge-inverse">' + this.count + '</span></button>');
+                      }
+
+                  });
+
+                         }
+                });
+
+               return false;
+                }); // end submit()
+});
     </script>
 @stop

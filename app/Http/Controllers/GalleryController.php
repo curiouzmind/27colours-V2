@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Gallery;
+use App\Like;
 use View;
 use Auth;
 use Redirect;
@@ -19,6 +20,7 @@ class GalleryController extends Controller
     public function __construct()
      {
         $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
+        $this->middleware('auth',['only'=>'getLike']);
     }
 
     public function getUpload()
@@ -89,6 +91,35 @@ class GalleryController extends Controller
         return Redirect::to('/gallery/upload')
         ->with('errors', 'Problem with your upload');
 
+    }
+
+    public function postProcess(Request $request)
+    {
+        $gallery_id=$request->get('gallery_id');
+        $gallery=Gallery::findorfail($gallery_id);
+        $matchLike =['likeable_id'=>$gallery_id,'user_id'=>\Auth::id()];
+        $userLike=Like::where($matchLike)->first();
+        
+        if($userLike == null){
+            $like=new Like();
+                $like->user_id=\Auth::id();
+                $gallery->likes()->save($like);
+                
+                $data[]=array('id' =>1, 'count' => $gallery->likes->count(), 'text'=>'not-liked');
+                 return \Response::json(['data'=> $data]);
+          }
+         else {
+     
+             \Auth::user()->likes()->delete($userLike);
+             $data[]=array('id' =>0, 'count' => $gallery->likes->count(), 'text'=>'liked');
+             return \Response::json(['data'=> $data]);
+          }
+
+    }
+
+    public function getLike()
+    {
+        return 'nothing';
     }
 
 

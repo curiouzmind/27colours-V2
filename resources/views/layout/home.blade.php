@@ -8,6 +8,9 @@
     @section('styles')
         <style>
             body {padding-top:0 !important;}
+            .badge .fa{
+                color: #9C0000;
+             }
         </style>
     @stop
     @section('content')

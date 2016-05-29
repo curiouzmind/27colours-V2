@@ -41,6 +41,8 @@
                 </h4>
                 <p class="text-uppercase uploader"><i class="fa fa-user fa-fw"></i>
                     <a href="{{ action('ProfileController@getShow', array('id'=>$video->user->id))}}">{{$video->user->username}}</a>
+
+                    <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$video->likes->count()}}
                 </p>
                 <p class="clearfix">
                     <span class="badge">{{$video->video_type}}</span>

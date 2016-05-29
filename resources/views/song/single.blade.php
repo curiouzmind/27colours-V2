@@ -53,6 +53,13 @@
           <div class="col-md-12">
             <div class="container">
                 <ul class="list-inline pull-right m5">
+                @if(Auth::guest())
+                                         <a href="/song/like" type="submit" class="btn btn-border not-liked">
+                                            <i class="fa fa-heart"></i> Like
+                                            <span class="badge badge-inverse"> {{$song->likes->count()}}</span>
+                                         </a>
+                                    @endif
+                    @if(Auth::check())
                     <li>                   
                     {{--*/ $userLike=App\Like::where(['likeable_id'=>$song->id,'user_id'=>Auth::id()])->first() /*--}}
         
@@ -66,6 +73,7 @@
                                     {{$song->likes->count()}} </span></button>
                     </form>
                     </li>
+                    @endif
                     <li>
                         <a href="{{asset($song->song)}}" download="download" title="Download &quot;{{$song->title}}&quot;"
                            class="btn btn-default text-capitalize"><i class="fa fa-download"></i> Download this track</a>

@@ -27,6 +27,8 @@
                     </h4>
                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                         <a href="{{ action('ProfileController@getShow', array('id'=>$song->user->id))}}">{{$song->user->username}}</a>
+
+                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$song->likes->count()}}
                     </p>
                     <p class="clearfix">
                         <span class="badge"> {{$song->genre}}</span>

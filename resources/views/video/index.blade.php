@@ -2,6 +2,14 @@
 @section('title')
     <title>Videos | 27Colours</title>
     @stop
+    @section('css-links')
+    <style type="text/css">
+    .badge .fa{
+        color: #9C0000;
+    }
+
+    </style>
+    @endsection
     @section('content')
             <!-- page header -->
     <div class="page-banner well">
@@ -62,6 +70,9 @@
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$music->user->id))}}">{{$music->user->username}}</a>
+
+                                                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$music->likes->count()}}
+                                                  </span>
                                                 </p>
                                                 <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i>{{$music->timeago}}</span></p>
                                             </div>
@@ -95,6 +106,8 @@
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$dance->user->id))}}">{{$dance->user->username}}</a>
+
+                                                     <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$dance->likes->count()}}   
                                                 </p>
                                                 <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$dance->timeago}}</span></p>
                                             </div>
@@ -128,6 +141,8 @@
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$comedy->user->id))}}">{{$comedy->user->username}}</a>
+
+                                                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$comedy->likes->count()}}
                                                 </p>
                                                 <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$comedy->timeago}}</span></p>
                                             </div>

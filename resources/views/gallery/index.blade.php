@@ -2,6 +2,13 @@
 @section('title')
     <title>Pictures | 27Colours</title>
     @stop
+    @section('css-links')
+    <style type="text/css">
+    .badge .fa{
+        color: #9C0000;
+    }
+    </style>
+    @endsection
     @section('content')
             <!-- page header -->
     <div class="page-banner well">
@@ -65,6 +72,8 @@
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$model->user->id))}}">{{$model->user->username}}</a>
+
+                                                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$model->likes->count()}}
                                                 </p>
                                                 <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$model->timeago}}</span></p>
                                             </div>
@@ -103,6 +112,8 @@
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
                                                         array('id'=>$other->user->id))}}">{{$other->user->username}}</a>
+
+                                                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$model->likes->count()}}
                                                 </p>
                                                 <p class="clearfix"><span class="badge"><i class="fa fa-clock-o"></i> {{$other->timeago}}</span></p>
                                             </div>

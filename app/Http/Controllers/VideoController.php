@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Video;
+use App\Like;
 use View;
 use Auth;
 use Redirect;
@@ -19,8 +20,8 @@ class VideoController extends Controller
      */
     public function __construct()
      {  
-        $this->middleware('auth',['only'=>['getUpload']]);
-        $this->middleware('confirm',['only'=>['getUpload']]);
+        $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
+        $this->middleware('auth',['only'=>'getLike']);
     }
 
     public function getUpload()
@@ -202,6 +203,35 @@ class VideoController extends Controller
         ->with('errorv', $validator->messages());
 
 
+    }
+
+     public function postProcess(Request $request)
+    {
+        $video_id=$request->get('video_id');
+        $video=Video::findorfail($video_id);
+        $matchLike =['likeable_id'=>$video_id,'user_id'=>\Auth::id()];
+        $userLike=Like::where($matchLike)->first();
+        
+        if($userLike == null){
+            $like=new Like();
+                $like->user_id=\Auth::id();
+                $video->likes()->save($like);
+                
+                $data[]=array('id' =>1, 'count' => $video->likes->count(), 'text'=>'not-liked');
+                 return \Response::json(['data'=> $data]);
+          }
+         else {
+     
+             \Auth::user()->likes()->delete($userLike);
+             $data[]=array('id' =>0, 'count' => $video->likes->count(), 'text'=>'liked');
+             return \Response::json(['data'=> $data]);
+          }
+
+    }
+
+    public function getLike()
+    {
+        return "you can see this";
     }
 
     public function search()

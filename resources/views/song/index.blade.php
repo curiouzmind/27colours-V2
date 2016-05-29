@@ -2,13 +2,13 @@
     @section('title')
         <title>Tracks | 27Colours</title>
     @stop
-    @section('css-links')
+    @section('styles')
     <style type="text/css">
     .badge .fa{
         color: #9C0000;
     }
-
     </style>
+    @endsection
     @section('content')
         <!-- page header -->
         <div class="page-banner well">

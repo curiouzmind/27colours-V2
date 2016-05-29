@@ -24,6 +24,7 @@ class SongController extends Controller
      {
         $this->song=$song;
         $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
+        $this->middleware('auth',['only'=>'getLike']);
     }
 
     public function getShow($id)
@@ -147,6 +148,11 @@ class SongController extends Controller
 
      }
 
+     public function getLike()
+     {
+        return "you can't see this";
+     }
+
      public function postProcess(Request $request)
     {
          //dd($request->all());
@@ -163,6 +169,7 @@ class SongController extends Controller
             $like=new Like();
                 $like->user_id=\Auth::id();
                 $song->likes()->save($like);
+
                 $data[]=array('id' =>1, 'count' => $song->likes->count(), 'text'=>'not-liked');
                  return \Response::json(['data'=> $data]);
           }

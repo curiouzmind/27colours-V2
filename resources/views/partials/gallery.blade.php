@@ -29,6 +29,8 @@
                     <p class="text-uppercase uploader">
                         <i class="fa fa-user fa-fw"></i>
                         <a href="{{ action('ProfileController@getShow', array('id'=>$gallery->user->id))}}">{{$gallery->user->username}}</a>
+
+                        <span class="badge pull-right"><i class="fa fa-heart"> </i>{{$gallery->likes->count()}}
                     </p>
                 </div>
             </div>
