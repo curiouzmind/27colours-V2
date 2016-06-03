@@ -16,6 +16,13 @@
       }
 
       @font-face {
+        font-family: 'mdi';
+        font-style: normal;
+        font-weight: 400;
+        src: local('mdi'), local('mdi'), url(https://cdn.materialdesignicons.com/1.6.50/css/materialdesignicons.min.css) format('icon');
+      }
+
+      @font-face {
         font-family: 'Lato';
         font-style: normal;
         font-weight: 700;
@@ -134,50 +141,67 @@
       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
         <!-- COPY -->
         <tr>
-          <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-            <p style="">Thanks for registering with 27colours with your Facebook details. You are one step away from letting the best hands manage your talent.</p>
-            <p style="margin: 0;">We're really excited to have you get started. Try and update your profile and tell us where you talent lies,So we can take it up from there.</p>
-          </td>
-        </tr>
-        <!-- BULLETPROOF BUTTON -->
-        <tr>
-          <td bgcolor="#ffffff" align="left">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
-                  <table border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                    
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <!-- COPY -->
-        <tr>
-          <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-          </td>
-        </tr>
-        <!-- COPY -->
-        <tr>
-          
-          </td>
-        </tr>
-        <!-- COPY -->
-        <tr>
-          <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-            <p style="margin: 0;">If you have any questions, just reply to this email—we're always happy to help out.</p>
-          </td>
-        </tr>
-        <!-- COPY -->
-        <tr>
-          <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;" >
-            <p style="margin: 0;">Cheers,<br>The 27Colours Team</p>
+          <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px; text-align: center;" >
+            <span style="color: rgb(230, 7, 7); font-family: 'Arial', 'Helvetica', sans-serif; font-size: 15px; font-weight: bold; line-height: 15px; mso-line-height-rule: exactly; text-decoration: none;">Bolaji</span> just liked your video below!
           </td>
         </tr>
       </table>
+      <!--[if (gte mso 9)|(IE)]>
+      </td>
+      </tr>
+      </table>
+      <![endif]-->
+    </td>
+  </tr>
+  <!-- RESOURCE LIKED -->
+  <tr>
+    <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
+      <!--[if (gte mso 9)|(IE)]>
+      <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+        <tr>
+          <td align="center" valign="top" width="600">
+      <![endif]-->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+          <tr>
+            <td class="top-video-padding" align="center" valign="top" style="border-collapse: collapse; padding-bottom: 40px; padding-left: 0px; padding-right: 0px; padding-top: 40px;">
+                <table width="460" border="0" cellspacing="0" cellpadding="0" class="video-table">
+                    <tr>
+                        <td align="center" valign="top" style="border-collapse: collapse;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center" valign="top" class="featured-text" style="border-collapse: collapse; color: #fba92b; font-family: 'Arial', 'Helvetica', sans-serif; font-size: 40px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; line-height: 40px; mso-line-height-rule: exactly; text-decoration: none;">
+                                        Duro
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center" valign="top" class="top-video-image" style="border-collapse: collapse; padding-bottom: 25px; padding-left: 0px; padding-right: 0px; padding-top: 25px;">
+                                      <a href="changeme" border="0" style="border: none; outline: none;">
+                                        <img src="../img/music-avatar-2.png" width="460" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
+                                      </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center" style="border-collapse: collapse;">
+                                        <table width="170" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td align="center" width="170" height="48" bgcolor="#FBA92B" class="button-wrapper" style="-moz-border-radius: 7px; -webkit-border-radius: 7px; background-clip: padding-box; border-collapse: collapse; border-radius: 7px; color: white; display: block;">
+                                                    <a href="changeme" class="inner-button" style="color: black; display: inline-block; font-family: 'Arial', 'Helvetica', sans-serif; font-size: 17px; line-height: 50px; text-decoration: none; width: 100%;"><span style="color: white;">View on 27Colours</span></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+          </tr>
+      </table> 
       <!--[if (gte mso 9)|(IE)]>
       </td>
       </tr>
