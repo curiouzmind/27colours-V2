@@ -35,7 +35,7 @@ class HomeController extends Controller
   {    
     if (\App::environment('production', 'staging'))
       {
-        echo "I'm on production or staging\n";
+        echo "environment=", \App::environment(), "\n";
       }
     else
       {
