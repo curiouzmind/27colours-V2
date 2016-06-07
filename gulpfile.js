@@ -12,5 +12,16 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.styles([
+    		'bootstrap.css',
+			'responsive.css',
+			'style.css',
+			'custom.css',
+			'selectize.css',
+			'fileinput.min.css',
+			'/themes/jackedup.css',
+			'selectize.css',
+			'cropper.css'
+		])
+		.browserSync();
 });

@@ -12,13 +12,22 @@
     .margin-0 {
         margin: 0 !important;
     }
+    #header-links span {
+       width: 25%;
+        text-align: center;
+       float:right;
+    }
+    .login-thumb {width:50% !important;}
 }
 @media (min-width: 768px) {
+    #header-links span {
+
+    }
     .slides li h1 {
         font-size: 48px;
     }
     .home-slider {
-        margin-top: 50px;
+        /*margin-top: 30px;*/
     }
     .social-connect .subscribe button {
         top: 60px;
@@ -33,7 +42,7 @@
     }
 
     .breadcrumb {
-        margin-top: 54px;
+        margin-top: 39px;
     }
 
     .ui-content {
@@ -83,7 +92,8 @@
     .picture-upload,
     .song-upload,
     .video-upload {
-        width: 500px;
+        height: 700px !important;
+        width: 100%;
     }
 }
 @media (min-width: 992px) {
@@ -222,7 +232,7 @@ html body .ui-group-theme-a .ui-btn:visited, html head + body .ui-btn.ui-btn-a:v
         transition: all 500ms ease;
     }
 }
-/* Second breakpoint is 63.75em (1020px). 4 column adminlayout. Tiles will be 250x250 pixels incl. margin again at the breakpoint. */
+/* Second breakpoint is 63.75em (1020px). 4 column layout. Tiles will be 250x250 pixels incl. margin again at the breakpoint. */
 @media ( min-width: 63.75em ) {
     .my-page .ui-content {
         padding: .625em; /* 10px */

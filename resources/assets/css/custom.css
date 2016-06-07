@@ -50,7 +50,7 @@
 
 /*html & body*/
 body {
-    padding-top:50px;
+    padding-top:50px !important;
     font-family:'Dosis', 'Helvetica Neue', 'Arial', 'sans-serif';
 }
 .login {
@@ -61,9 +61,22 @@ body {
     background-size: cover;
 }
 
+.login,
+.register,
+.picture-upload,
+.song-upload,
+.video-upload {
+    height: 700px !important;
+    width: 100%;
+}
+
 .panel-default {
     opacity: 0.9;
     margin-top:30px;
+}
+.panel-heading h4 {
+    margin: 0;
+    padding: 10px;
 }
 .form-group.last { margin-bottom:0px; }
 
@@ -104,6 +117,9 @@ body {
     padding: 19px;
     background: rgba(204, 24, 30, 0.84);
     color: #fff;
+}
+.page-banner h2 {
+    margin-top: 10px;
 }
 .home-slider, .page-banner.well {background: url("../img/bg.jpg") no-repeat fixed center top / cover #fff;}
 .navbar-bootsnipp .bootsnipp-search {
@@ -217,9 +233,9 @@ body {
 	Banner Styles
 -------------------------------------------------------*/
 .home-slider {
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 }
-.auth-overlay {min-height:500px !important;}
+.auth-overlay {min-height:500px !important;height: 100%;}
 .flexslider {height:600px;}
 .flexslider, .auth-overlay {margin: 0; padding:0;background-color: rgba(210, 9, 4, 0.89);}
 .flexslider .slides {padding:0; list-style: none; overflow: hidden;}

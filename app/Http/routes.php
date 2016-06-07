@@ -39,7 +39,7 @@ Route::get('confirmation/resend','EmailController@resendConfirmation');
 // testing routes( just swoop the name of the view file below with the view you want to test)
 // and go to http://localhost:8090/testing/view to view the page
 Route::get('testing/view', function(){
-    return view('auth.resend-email-testing');
+    return view('emails.notifications');
 });
 
 Route::get('testing/email','EmailController@sendTest');

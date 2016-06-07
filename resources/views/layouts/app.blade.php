@@ -9,16 +9,16 @@
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="singing, photoshoot,modelling,talent search">
     <meta name="author" content="curiouzmindTech">
-    <!-- core css -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.css')}}">
-    <!-- plugins css -->
     <meta property="og:title" content="@yield('title')"/>
     <meta property="og:description" content="@yield('description')" />
     <meta property="og:image" content="http://27colours.com/img/logo.png"/>
 
+    <!-- core css -->
+    <!-- <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.css')}}"> -->
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
     <!-- custom global css -->
-    {{--<link rel="stylesheet" href="{{asset('css/style.css')}}">--}}
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('css/style.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{asset('css/custom.css')}}"> -->
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.1.0/css/font-awesome.css')}}">
     <!-- GOOGLE FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Dosis:500,300,700,400' rel='stylesheet' type='text/css'>
