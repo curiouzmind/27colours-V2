@@ -33,14 +33,14 @@ class HomeController extends Controller
      */
     public function getIndex()
   {    
-    if (\App::environment('production', 'staging'))
-      {
-        echo "environment=", \App::environment(), "\n";
-      }
-    else
-      {
-        echo "environment=", \App::environment(), "\n";
-      }
+    //if (\App::environment('production', 'staging'))
+     // {
+     //   echo "environment=", \App::environment(), "\n";
+     // }
+   // else
+     // {
+      //  echo "environment=", \App::environment(), "\n";
+     // }
 
          $songs = Song::orderBy('id','desc')->paginate(4);
         $videos= Video::orderBy('id', 'desc')->paginate(3);
