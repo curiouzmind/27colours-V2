@@ -50,15 +50,15 @@ class AuthenticateUser{
 
 	private function getSocialUser()
 	{
-		//if($this->request->has('error') =='access_denied'){
-       //   return redirect('login');
-       // }
+		if($this->request->has('error') =='access_denied'){
+          return redirect('login');
+        }
 
-		//$state = $this->request->get('state');
-    	//$this->request->session()->put('state',$state);
-    	//if(\Auth::check()==false){
-        //  session()->regenerate();
-       // }
+		$state = $this->request->get('state');
+    	$this->request->session()->put('state',$state);
+    	if(\Auth::check()==false){
+          session()->regenerate();
+        }
 
 		$user=$this->socialite->driver('facebook')
 				->fields([ 

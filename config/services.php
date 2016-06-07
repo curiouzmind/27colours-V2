@@ -36,9 +36,9 @@ return [
     ],
 
     'facebook'=>[
-        'client_id'=>env('FACEBOOK_CLIENT_ID'),
-        'client_secret'=>env('FACEBOOK_CLIENT_SECRET'),
-        'redirect'=>'http://localhost:8090/login/facebook',
+        'client_id'=>env('Test-FACEBOOK_CLIENT_ID'),
+        'client_secret'=>env('Test-FACEBOOK_CLIENT_SECRET'),
+        'redirect'=>env('Test-REDIRECT_URL'),
     ],
 
 ];
