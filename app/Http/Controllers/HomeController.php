@@ -33,6 +33,15 @@ class HomeController extends Controller
      */
     public function getIndex()
   {    
+    if (\App::environment('production', 'staging'))
+      {
+        echo "I'm on production or staging\n";
+      }
+    else
+      {
+        echo "environment=", \App::environment(), "\n";
+      }
+
          $songs = Song::orderBy('id','desc')->paginate(4);
         $videos= Video::orderBy('id', 'desc')->paginate(3);
         $galleries = Gallery::orderBY('id', 'desc')->paginate(8);
