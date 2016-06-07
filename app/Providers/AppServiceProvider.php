@@ -16,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (\App::environment('production')) {
+          \URL::forceSchema('https');
+             }
         $this->app->bind(
             'App\Repositories\SongRepoInterface',
             'App\Repositories\SongRepo'
