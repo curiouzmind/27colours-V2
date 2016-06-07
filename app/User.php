@@ -80,22 +80,14 @@ class User extends Authenticatable
 
     public function updateCreateUser($userData)
     {   
-        //dd($userData->user['first_name']);
-         // dd($user);
-        // dd($userData);
+        
         $mailer=new UserMailer();
         $user = User::where('email',$userData->email)->first();
-        //dd($user);
         if( $user )
         {
 
             $oldUser=$this->updateUser($user,$userData);
             return $oldUser;
-    
-                
-               // \Auth::login($user, true);
-                // session()->flash('alert','You logged with Facebook');
-                // session()->flash('alert_type','alert-success');
                 return redirect('/profile');
         }
         else{
@@ -148,13 +140,21 @@ class User extends Authenticatable
             }
 
 
-            if (isset($userData->avatar))
+            if (isset($userData->avatar_original))
             {
+                if(! isset($user->profilePhoto))
+                {
                 $pic = new ProfilePhoto();
-                $pic->image=$userData->avatar;
+                $pic->image=$userData->avatar_original;
                 $user->profilePhoto()->save($pic);
+                }
+                else{
+                $pic2=ProfilePhoto::where('image',$user->profilePhoto->image)->first();
+                $pic2->image=$userData->avatar_original;
+                $user->profilePhoto()->save($pic2);
+                }
 
-             }
+            }
              if(!isset($user->confirmed))
              {
                 $mailer->facebookWelcome($user);
@@ -177,11 +177,11 @@ class User extends Authenticatable
                  'facebookID'=>$userData->id
             ]);
 
-            if ($userData->avatar)
+            if ($userData->avatar_original)
             {
 
                 $picc = new ProfilePhoto();
-                $picc->image=$userData->avatar;
+                $picc->image=$userData->avatar_original;
                 $newUser->profilePhoto()->save($picc);                
             }
 
