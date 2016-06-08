@@ -41,6 +41,7 @@ Route::get('confirmation/resend','EmailController@resendConfirmation');
 Route::get('testing/view', function(){
     return view('emails.notifications');
 });
+Route::get('testing/email/view','EmailController@checkView');
 
 Route::get('testing/email','EmailController@sendTest');
 

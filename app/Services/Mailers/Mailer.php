@@ -16,11 +16,22 @@ abstract class Mailer
 
 	public function sendTo($users,$view, $data,$subject,$sender)
 	{
-		\Mail::queue($view, ['data' =>$data ], function ($message) use($sender,$subject,$users)
+		\Mail::send($view, ['data' =>$data ], function ($message) use($sender,$subject,$users)
         {
             $message->from($sender, '27colours')
             		->subject($subject)
 					->to($users);
+
+        });
+	}
+
+	public function sendNotice($users,$view, $data,$subject,$sender)
+	{
+		\Mail::send($view, ['data' =>$data ], function ($message) use($sender,$subject,$users)
+        {
+            $message->from($sender, '27colours')
+            		->subject($subject)
+					->to($users->email);
 
         });
 	}

@@ -3,7 +3,7 @@ namespace App\Services\Mailers;
 
 //use Illuminate\Contracts\Auth\StatefulGuard as Authenticate;
 use Illuminate\Contracts\Auth\Guard;
-
+use App\User;
 class UserMailer extends Mailer
 {
     protected $user;
@@ -62,6 +62,21 @@ class UserMailer extends Mailer
       $view ='emails.activate';
       $user=['gbolahanalade@gmail.com','samizares@beazea.com'];
        $this->sendTo($user, $view, $data, $subject,$sender);
+    }
+
+    public function sendLikeSong($song,$like)
+    {
+      $data =[];
+      $owner=$song->user;
+      $liker=User::where('id',$like->user_id)->first();
+      $data['song_title']=$song->title;
+      $data['liker']=$liker->username;
+      $data['song_image']=isset($song->image) ? $song->image : 'https://27colours.com/img/music-avatar-2.PNG';
+      $subject= $data['liker'] . ' Liked your Song titled '. $data['song_title'];
+      $sender='info@27colours.com';
+      $view='emails.notifications';
+      $this->sendNotice($owner,$view,$data,$subject,$sender);
+
     }
     
 }

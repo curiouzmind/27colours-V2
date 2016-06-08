@@ -11,18 +11,21 @@ use App\Like;
 use View;
 use Auth;
 use Redirect;
+use App\Services\Mailers\UserMailer;
 
 class SongController extends Controller
 {
     protected $song;
+    public $mailer;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(SongRepoInterface $song)
+    public function __construct(SongRepoInterface $song,UserMailer $mailer)
      {
         $this->song=$song;
+        $this->mailer=$mailer;
         $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
         $this->middleware('auth',['only'=>'getLike']);
     }
@@ -169,6 +172,8 @@ class SongController extends Controller
             $like=new Like();
                 $like->user_id=\Auth::id();
                 $song->likes()->save($like);
+
+                $this->mailer->sendLikeSong($song,$like);
 
                 $data[]=array('id' =>1, 'count' => $song->likes->count(), 'text'=>'not-liked');
                  return \Response::json(['data'=> $data]);
