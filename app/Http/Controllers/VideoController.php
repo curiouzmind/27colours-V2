@@ -14,7 +14,7 @@ use App\Services\Mailers\UserMailer;
 
 class VideoController extends Controller
 {
-    protected $mailer
+    protected $mailer;
     /**
      * Create a new controller instance.
      *
