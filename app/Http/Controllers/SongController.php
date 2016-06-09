@@ -174,7 +174,7 @@ class SongController extends Controller
                 {
                     //$this->mailer->sendLikeSong($song,$like);
                     //Wait 30 secs to see if the song is still to retain the liked
-                    $job=(new SendSongLikeNotice($song,$like)->delay(30));
+                    $job=(new SendSongLikeNotice($song,$like))->delay(30);
                     if($like)
                     $this->dispatch($job);
                 }
