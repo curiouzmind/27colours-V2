@@ -74,7 +74,7 @@ class UserMailer extends Mailer
       $data['resource']= 'song';
       $data['resource_title']=$song->title;
       $data['liker_username']=$liker->username;
-      $data['placeholder']=isset($song->image) ? 'https//27colours.com/'.$song->image : 'https://27colours.com/img/music-avatar-2.PNG';
+      $data['placeholder']=isset($song->image) ? 'https://27colours.com/'.$song->image : 'https://27colours.com/img/music-avatar-2.PNG';
       $subject= $data['liker_username'] . ' liked your song titled '. $data['resource_title'];
       $sender='info@27colours.com';
       $view='emails.notifications';
@@ -92,7 +92,7 @@ class UserMailer extends Mailer
       $data['resource']= 'video';
       $data['resource_title']=$video->title;
       $data['liker_username']=$liker->username;
-      $data['placeholder']=isset($video->image) ? 'https//27colours.com/'.$video->image :'https://27colours.com/img/video-player-2.PNG';
+      $data['placeholder']=isset($video->image) ? 'https://27colours.com/'.$video->image :'https://27colours.com/img/video-player-2.PNG';
       $subject= $data['liker_username'] . ' liked your video titled '. $data['resource_title'];
       $sender='info@27colours.com';
       $view='emails.notifications';
