@@ -75,7 +75,7 @@ class UserMailer extends Mailer
       $data['song_title']=$song->title;
       $data['liker_username']=$liker->username;
       //$data['song_image']=isset($song->image) ? $song->image : 'https://27colours.com/img/music-avatar-2.';
-      $subject= $data['liker'] . ' liked your Song titled '. $data['song_title'];
+      $subject= $data['liker_username'] . ' liked your Song titled '. $data['song_title'];
       $sender='info@27colours.com';
       $view='emails.notifications';
       $this->sendNotice($owner,$view,$data,$subject,$sender);
