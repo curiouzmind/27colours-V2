@@ -158,22 +158,22 @@ class SongController extends Controller
 
      public function postProcess(Request $request)
     {
-         //dd($request->all());
         $song_id=$request->get('song_id');
         $song=Song::findorfail($song_id);
-        //$user_id=\Auth::id();
-        //$userLikes= \Auth::user()->likes->lists('id')->all();
         $matchLike =['likeable_id'=>$song_id,'user_id'=>\Auth::id()];
         $userLike=Like::where($matchLike)->first();
-        //dd($userLike);
 
 
         if($userLike == null){
             $like=new Like();
                 $like->user_id=\Auth::id();
                 $song->likes()->save($like);
+                $owner=$song->user;
 
-                $this->mailer->sendLikeSong($song,$like);
+                If($owner->id != $like->user_id)
+                {
+                 $this->mailer->sendLikeSong($song,$like);
+                }
 
                 $data[]=array('id' =>1, 'count' => $song->likes->count(), 'text'=>'not-liked');
                  return \Response::json(['data'=> $data]);
