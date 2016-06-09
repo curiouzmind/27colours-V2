@@ -9,6 +9,7 @@
                     <p>Please, check your Email inbox/junk/spam folders for your activation email.</p></div>
                     <div class="panel-body">
                         <p>If you still can't find your email, click the resend link below</p>
+                        <a class="btn btn-danger btn-md" href="/profile"><i class="fa fa-btn fa-envelope"></i> Back to profile</a>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">                           
