@@ -12,6 +12,7 @@ use View;
 use Auth;
 use Redirect;
 use App\Services\Mailers\UserMailer;
+use App\Jobs\SendSongLikeNotice;
 
 class SongController extends Controller
 {
