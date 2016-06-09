@@ -169,10 +169,14 @@ class SongController extends Controller
                 $like->user_id=\Auth::id();
                 $song->likes()->save($like);
                 $owner=$song->user;
-
+                //stop the owner of the resource from receiving notice after liking his/her own resource
                 If($owner->id != $like->user_id)
                 {
-                 $this->mailer->sendLikeSong($song,$like);
+                    //$this->mailer->sendLikeSong($song,$like);
+                    //Wait 30 secs to see if the song is still to retain the liked
+                    $job=(new SendSongLikeNotice($song,$like)->delay(30))
+                    if($like)
+                    $this->dispatch($job);
                 }
 
                 $data[]=array('id' =>1, 'count' => $song->likes->count(), 'text'=>'not-liked');
