@@ -70,7 +70,7 @@
                         </form>
                     </div>
                     <div class="panel-footer">
-                        Don't have an account? Click <a class="bold" href="/register">here</a> to register.
+                        <h4>Don't have an account? Click <a class="bold" href="/register">here</a> to register.</h4>
                     </div>
                 </div>
             </div>
