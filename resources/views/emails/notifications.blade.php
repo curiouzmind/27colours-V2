@@ -170,15 +170,15 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center" valign="top" class="featured-text" style="border-collapse: collapse; color: #fba92b; font-family: 'Arial', 'Helvetica', sans-serif; font-size: 40px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; line-height: 40px; mso-line-height-rule: exactly; text-decoration: none;">
-                                        Duro
+                                        {{$data['song_title']}}
                                     </td>
                                 </tr>
                             </table>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center" valign="top" class="top-video-image" style="border-collapse: collapse; padding-bottom: 25px; padding-left: 0px; padding-right: 0px; padding-top: 25px;">
-                                      <a href="changeme" border="0" style="border: none; outline: none;">
-                                        <img src="https://27colours.com/img/music-avatar-2.png" width="200" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
+                                      <a href="{{url($data['link'])}}" border="0" style="border: none; outline: none;">
+                                        <img src="https://27colours.com/img/music-avatar-2.PNG" width="200" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
                                       </a>
                                     </td>
                                 </tr>
