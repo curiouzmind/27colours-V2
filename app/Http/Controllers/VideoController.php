@@ -10,16 +10,19 @@ use App\Like;
 use View;
 use Auth;
 use Redirect;
+use App\Services\Mailers\UserMailer;
 
 class VideoController extends Controller
 {
+    protected $mailer
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserMailer $mailer)
      {  
+        $this->mailer= $mailer;
         $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
         $this->middleware('auth',['only'=>'getLike']);
     }
@@ -216,6 +219,8 @@ class VideoController extends Controller
             $like=new Like();
                 $like->user_id=\Auth::id();
                 $video->likes()->save($like);
+
+                $this->mailer->sendLikeVideo($video,$like);
                 
                 $data[]=array('id' =>1, 'count' => $video->likes->count(), 'text'=>'not-liked');
                  return \Response::json(['data'=> $data]);

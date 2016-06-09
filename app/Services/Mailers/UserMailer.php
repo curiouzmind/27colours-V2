@@ -72,14 +72,52 @@ class UserMailer extends Mailer
       $data['owner_username']=$owner->username;
       $data['link']='https://27colours.com/song/show/'.$song->id;
       $data['resource']= 'song';
-      $data['song_title']=$song->title;
+      $data['resource_title']=$song->title;
       $data['liker_username']=$liker->username;
-      //$data['song_image']=isset($song->image) ? $song->image : 'https://27colours.com/img/music-avatar-2.';
-      $subject= $data['liker_username'] . ' liked your Song titled '. $data['song_title'];
+      $data['placeholder']=isset($song->image) ? 'https//27colours.com/'.$song->image : 'https://27colours.com/img/music-avatar-2.PNG';
+      $subject= $data['liker_username'] . ' liked your song titled '. $data['resource_title'];
       $sender='info@27colours.com';
       $view='emails.notifications';
       $this->sendNotice($owner,$view,$data,$subject,$sender);
 
     }
+
+    public function sendLikeVideo($video,$like)
+    {
+      $data =[];
+      $owner=$video->user;
+      $liker=User::where('id',$like->user_id)->first();
+      $data['owner_username']=$owner->username;
+      $data['link']='https://27colours.com/video/show/'.$video->id;
+      $data['resource']= 'video';
+      $data['resource_title']=$video->title;
+      $data['liker_username']=$liker->username;
+      $data['placeholder']=isset($video->image) ? 'https//27colours.com/'.$video->image :'https://27colours.com/img/video-player-2.PNG';
+      $subject= $data['liker_username'] . ' liked your video titled '. $data['resource_title'];
+      $sender='info@27colours.com';
+      $view='emails.notifications';
+      $this->sendNotice($owner,$view,$data,$subject,$sender);
+
+    }
+
+    public function sendLikeGallery($gallery,$like)
+    {
+      $data =[];
+      $owner=$gallery->user;
+      $liker=User::where('id',$like->user_id)->first();
+      $data['owner_username']=$owner->username;
+      $data['link']='https://27colours.com/gallery/show/'.$gallery->id;
+      $data['resource']= 'picture';
+      $data['resource_title']=isset($gallery->caption) ? $gallery->caption : 'Your cute photo on 27colours';
+      $data['liker_username']=$liker->username;
+      $data['placeholder']='https://27colours.com/'.$gallery->image;
+      $subject= $data['liker_username'] . ' liked your picture';
+      $sender='info@27colours.com';
+      $view='emails.notifications';
+      $this->sendNotice($owner,$view,$data,$subject,$sender);
+
+    }
+
+
     
 }

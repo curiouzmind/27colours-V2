@@ -9,16 +9,19 @@ use App\Like;
 use View;
 use Auth;
 use Redirect;
+use App\Services\Mailers\UserMailer;
 
 class GalleryController extends Controller
 {
+    protected $mailer;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserMailer $mailer)
      {
+        $this->mailer= $mailer;
         $this->middleware(['auth','confirm'],['only'=>['getUpload']]);
         $this->middleware('auth',['only'=>'getLike']);
     }
@@ -104,6 +107,8 @@ class GalleryController extends Controller
             $like=new Like();
                 $like->user_id=\Auth::id();
                 $gallery->likes()->save($like);
+
+                $this->mailer->sendLikeGallery($gallery,$like);
                 
                 $data[]=array('id' =>1, 'count' => $gallery->likes->count(), 'text'=>'not-liked');
                  return \Response::json(['data'=> $data]);
