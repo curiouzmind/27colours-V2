@@ -1,6 +1,6 @@
 var elixir = require('laravel-elixir');
 
-/*
+ /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
  |--------------------------------------------------------------------------
@@ -22,6 +22,9 @@ elixir(function(mix) {
 			'/themes/jackedup.css',
 			'selectize.css',
 			'cropper.css'
-		])
-		.browserSync();
+		], 'public/css/all.min.css')
+    	.browserify()
+        .browserSync({
+            proxy: '27colours.local'
+        });
 });

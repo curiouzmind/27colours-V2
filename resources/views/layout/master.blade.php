@@ -72,6 +72,9 @@
 					$('a[href="#toggle-search"]').trigger('click');
 				}
 			});
+            $('a[href="#toggle-search-xs"]').on('click', function() {
+               $('.bootsnipp-search').toggle().animate('slidein', 200); 
+            });
 		});
         $(function () {
             var w = $(window);

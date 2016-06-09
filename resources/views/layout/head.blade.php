@@ -10,13 +10,14 @@
         </div>
         @endif        
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="[ navbar-header ]">
+        <div class="navbar-header">
             <button type="button" class="[ navbar-toggle collapsed]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="[ sr-only ]">Toggle navigation</span>
                 <span class="[ icon-bar ]"></span>
                 <span class="[ icon-bar ]"></span>
                 <span class="[ icon-bar ]"></span>
             </button>
+            <a href="#toggle-search-xs" class="animate pull-right m10 visible-xs" style="color: #888;"><i class="fa fa-search fa-2x"></i></a>
             <div class="[ animbrand ]">
                 <a class="[ p50 ][ navbar-brand ][ animate ]" href="/">
                     <img class="img-responsive" src="{{asset('img/logo.png')}}" alt="27Colours">
@@ -46,13 +47,13 @@
                 @endif
             </ul>
             <ul class="[ nav navbar-nav navbar-right ]">
-                <li class="[ visible-xs ]">
+                <li class="hidden">
                     <form action="#" method="GET" role="search">
                         <div class="[ input-group ]">
                             <input type="text" class="[ form-control ]" name="q" placeholder="Search for Tracks, Videos, Pictures & Talents">
 								<span class="[ input-group-btn ]">
 									<button class="[ btn btn-primary ]" type="submit"><span class="[ glyphicon glyphicon-search ]"></span></button>
-									<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
+									<button class="btn btn-danger hidden-xs" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
 								</span>
                         </div>
                     </form>
@@ -100,15 +101,15 @@
             </ul>
         </div>
     </div>
-    <div class="[ bootsnipp-search animate ]">
-        <div class="[ container ]">
+    <div class="bootsnipp-search animate">
+        <div class="container p0">
             <form action="/search" method="GET" role="search">
             {{ csrf_field() }}
                 <div class="[ input-group ]">
                     <input type="text" class="[ form-control ]" name="search" placeholder="Search for Tracks, Videos, Pictures & Talents">
 						<span class="[ input-group-btn ]">
 							<button class="[ btn btn-primary ]" type="submit"><span class="[ glyphicon glyphicon-search ]"></span></button>
-                            <button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
+                            <button class="btn btn-danger hidden-xs" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
 						</span>
                 </div>
             </form>
