@@ -69,10 +69,13 @@ class UserMailer extends Mailer
       $data =[];
       $owner=$song->user;
       $liker=User::where('id',$like->user_id)->first();
+      $data['owner_username']=$owner->username;
+      $data['link']='https://27colours.com/song/show/'.$song->id;
+      $data['resource']= 'song';
       $data['song_title']=$song->title;
-      $data['liker']=$liker->username;
-      $data['song_image']=isset($song->image) ? $song->image : 'https://27colours.com/img/music-avatar-2.PNG';
-      $subject= $data['liker'] . ' Liked your Song titled '. $data['song_title'];
+      $data['liker_username']=$liker->username;
+      //$data['song_image']=isset($song->image) ? $song->image : 'https://27colours.com/img/music-avatar-2.';
+      $subject= $data['liker'] . ' liked your Song titled '. $data['song_title'];
       $sender='info@27colours.com';
       $view='emails.notifications';
       $this->sendNotice($owner,$view,$data,$subject,$sender);

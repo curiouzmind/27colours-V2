@@ -119,7 +119,7 @@
       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
         <tr>
           <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-            <h1 style="font-size: 48px; font-weight: 400; margin: 0;">Hi {{ isset($data['username']) ? $data['username'] : 'Sam' }}!</h1>
+            <h1 style="font-size: 48px; font-weight: 400; margin: 0;">Hi {{ $data['owner_username'] }}!</h1>
           </td>
         </tr>
       </table>
@@ -142,7 +142,7 @@
         <!-- COPY -->
         <tr>
           <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px; text-align: center;" >
-            <span style="color: rgb(230, 7, 7); font-family: 'Arial', 'Helvetica', sans-serif; font-size: 15px; font-weight: bold; line-height: 15px; mso-line-height-rule: exactly; text-decoration: none;">Bolaji</span> just liked your video below!
+            <span style="color: rgb(230, 7, 7); font-family: 'Arial', 'Helvetica', sans-serif; font-size: 15px; font-weight: bold; line-height: 15px; mso-line-height-rule: exactly; text-decoration: none;">{{$data['liker_username']}}</span> just liked your {{ $data['resource']}} below!
           </td>
         </tr>
       </table>
@@ -178,7 +178,7 @@
                                 <tr>
                                     <td align="center" valign="top" class="top-video-image" style="border-collapse: collapse; padding-bottom: 25px; padding-left: 0px; padding-right: 0px; padding-top: 25px;">
                                       <a href="changeme" border="0" style="border: none; outline: none;">
-                                        <img src="../img/music-avatar-2.png" width="200" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
+                                        <img src="https://27colours.com/img/music-avatar-2.png" width="200" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
                                       </a>
                                     </td>
                                 </tr>
@@ -189,7 +189,7 @@
                                         <table width="170" cellspacing="0" cellpadding="0" border="0">
                                             <tr>
                                                 <td align="center" width="170" height="48" bgcolor="#FBA92B" class="button-wrapper" style="-moz-border-radius: 7px; -webkit-border-radius: 7px; background-clip: padding-box; border-collapse: collapse; border-radius: 7px; color: white; display: block;">
-                                                    <a href="changeme" class="inner-button" style="color: black; display: inline-block; font-family: 'Arial', 'Helvetica', sans-serif; font-size: 17px; line-height: 50px; text-decoration: none; width: 100%;"><span style="color: white;">View on 27Colours</span></a>
+                                                    <a href="{{url($data['link'])}}" class="inner-button" style="color: black; display: inline-block; font-family: 'Arial', 'Helvetica', sans-serif; font-size: 17px; line-height: 50px; text-decoration: none; width: 100%;"><span style="color: white;">View on 27Colours</span></a>
                                                 </td>
                                             </tr>
                                         </table>
