@@ -36,6 +36,6 @@ class SendSongLikeNotice extends Job implements ShouldQueue
     public function handle(UserMailer $mailer)
     {
         $this->mailer= $mailer;
-        $this->mailer->sendLikeSong($song,$like);
+        $this->mailer->sendLikeSong($this->song,$this->like);
     }
 }
