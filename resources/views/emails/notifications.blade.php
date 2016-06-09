@@ -178,7 +178,7 @@
                                 <tr>
                                     <td align="center" valign="top" class="top-video-image" style="border-collapse: collapse; padding-bottom: 25px; padding-left: 0px; padding-right: 0px; padding-top: 25px;">
                                       <a href="{{url($data['link'])}}" border="0" style="border: none; outline: none;">
-                                        <img src="{{url($data['placeholder'])}}" width="200" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
+                                        <img src="{{$data['placeholder']}}" width="200" alt="" class="image-fix" style="-ms-interpolation-mode: bicubic; display: block; outline: none; text-decoration: none;">
                                       </a>
                                     </td>
                                 </tr>
