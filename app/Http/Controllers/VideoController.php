@@ -11,6 +11,7 @@ use View;
 use Auth;
 use Redirect;
 use App\Services\Mailers\UserMailer;
+use App\Jobs\SendVideoLikeNotice;
 
 class VideoController extends Controller
 {
@@ -220,7 +221,8 @@ class VideoController extends Controller
                 $like->user_id=\Auth::id();
                 $video->likes()->save($like);
 
-                $this->mailer->sendLikeVideo($video,$like);
+                //$this->mailer->sendLikeVideo($video,$like);
+                 $this->dispatch(new SendVideoLikeNotice($video,$like));
                 
                 $data[]=array('id' =>1, 'count' => $video->likes->count(), 'text'=>'not-liked');
                  return \Response::json(['data'=> $data]);
