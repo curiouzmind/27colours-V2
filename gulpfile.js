@@ -15,15 +15,16 @@ elixir(function(mix) {
     mix.styles([
     		'bootstrap.css',
 			'responsive.css',
-			'style.css',
-			'custom.css',
-			'selectize.css',
 			'fileinput.min.css',
-			'/themes/jackedup.css',
-			'selectize.css',
-			'cropper.css'
-		], 'public/css/all.min.css')
-    	.browserify()
+			'jackedup.css',
+			'frontend/style.css',
+			'frontend/custom.css',
+			'frontend/selectize.css',
+			'frontend/selectize.css',
+			'frontend/cropper.css',			
+			'backend/sb-admin-2.css',
+			'backend/timeline.css'
+		], 'public/css/all.min.css', 'resources/assets/css/')
         .browserSync({
             proxy: '27colours.local'
         });

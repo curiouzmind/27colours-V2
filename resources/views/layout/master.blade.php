@@ -28,7 +28,7 @@
     <script type="text/javascript" src="{{asset('js/humane.min.js') }}"></script>
     <script type="text/javascript" src="{{asset('js/selectize.min.js') }}"></script>
     <script>
-        <!-- owl-carousel -->
+        // owl-carousel
         $(document).ready(function(){
             $(".owl-carousel").owlCarousel({
                 autoPlay: 3000, //Set AutoPlay to 3 seconds

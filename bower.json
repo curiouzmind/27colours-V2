@@ -1,0 +1,20 @@
+{
+  "name": "27colours-v2",
+  "description": "",
+  "main": "css/all.min.js",
+  "authors": [
+    "Bolaji Alade <bolajialade.work@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/curiouzmind/27colours-V2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jasny-bootstrap": "^3.1.3"
+  }
+}
