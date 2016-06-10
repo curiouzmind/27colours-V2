@@ -118,6 +118,31 @@ class UserMailer extends Mailer
 
     }
 
+    public function informAdmin($user)
+    {
+      $data=[];
+      $data['username']=$user->username;
+      $data['profile_link']=url('/profile/show/'.$user->id);
+      $data['user_image']=isset($user->profilePhoto) ? $user->profilePhoto->image : asset('img/user.PNG');
+      $subject='A new user '.$user->username.' has been registered';
+      $view='emails.informAdmins';
+      $sender='info@27colours.com';
+      $admins=['support@27colous.com','nonso@27colours.com','samizares@27colours.com'];
+      $this->sendTo($admins, $view, $data, $subject,$sender);
+
+
+    }
+
+    public function sendEmail(array $data)
+    {
+        \Mail::send('emails.activate', ['data'=>$data], function($message) use ($data) {
+                $message->to($data['email'], $data['username'])
+                        ->from('support@27colours.com')
+                    ->subject('27colours: Verify your email address');
+            });
+
+    }
+
 
     
 }

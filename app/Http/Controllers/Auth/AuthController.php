@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Services\Mailers\UserMailer;
+use App\Events\UserRegistered;
+use App\Events\UserLoggedIn;
 
 class AuthController extends Controller
 {
@@ -26,6 +29,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+     protected $mailer;
+
     /**
      * Where to redirect users after login / registration.
      *
@@ -38,9 +43,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserMailer $mailer)
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->mailer= $mailer;
     }
 
     /**
@@ -100,7 +106,8 @@ class AuthController extends Controller
                 'email'     => $user->email,
                 'confirmation_code'=> $user->confirmation_code,
                 );
-            $this->sendEmail($data);
+            $this->mailer->sendEmail($data);
+            event(new UserRegistered($user->id));
         } 
   
         
@@ -114,16 +121,6 @@ class AuthController extends Controller
     {
         $confirmation_code = str_random(40);
         return $confirmation_code;
-    }
-
-    public function sendEmail(array $data)
-    {
-        \Mail::send('emails.activate', ['data'=>$data], function($message) use ($data) {
-                $message->to($data['email'], $data['username'])
-                        ->from('support@27colours.com')
-                    ->subject('27colours: Verify your email address');
-            });
-
     }
 
 

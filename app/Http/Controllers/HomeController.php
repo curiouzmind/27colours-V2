@@ -41,8 +41,8 @@ class HomeController extends Controller
      // {
       //  echo "environment=", \App::environment(), "\n";
      // }
-
-         $songs = Song::orderBy('id','desc')->paginate(4);
+        //dd(asset('img/user.png'));
+        $songs = Song::orderBy('id','desc')->paginate(4);
         $videos= Video::orderBy('id', 'desc')->paginate(3);
         $galleries = Gallery::orderBY('id', 'desc')->paginate(8);
         $talents = User::orderBY('created_at', 'desc')

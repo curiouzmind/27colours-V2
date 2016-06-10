@@ -4,6 +4,8 @@ use Laravel\Socialite\Contracts\Factory as Socialite;
 use Illuminate\Http\Request;
 //use Illuminate\Contracts\Auth\Authenticatable as Authenticatable;
 use App\User;
+use App\Events\UserRegistered;
+use App\Events\UserLoggedIn;
 
 
 class AuthenticateUser{
@@ -30,12 +32,14 @@ class AuthenticateUser{
 		if(isset($user->sessionValue))
 		{
 			\Auth::login($user, true);
+			//event(new UserLoggedIn($user->id));
 			session()->flash('alert','You are logged in with Facebook');
         	session()->flash('alert_type','alert-success');
 			return redirect('/profile');
 		}
 
 		\Auth::login($user, true);
+		event(new UserRegistered($user->id));
 		session()->flash('alert','Thanks for registering with Facebook');
         session()->flash('alert_type','alert-success');
 		return redirect('/profile');

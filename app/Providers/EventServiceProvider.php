@@ -16,6 +16,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserWasBanned' => [
             'App\Listeners\EmailNotifier',
         ],
+        'App\Events\UserRegistered' =>[
+            'App\Listeners\AdminNotifier',         
+        ],
+        'App\Events\UserLoggedIn' => [
+            'App\Listeners\StoreLastLogin',
+        ],
+        'Illuminate\Auth\Events\Login' => [
+        'App\Listeners\LogSuccessfulLogin',
+         ],
     ];
 
     /**
