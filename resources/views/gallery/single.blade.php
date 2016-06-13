@@ -11,6 +11,7 @@
         <meta property="og:title" content="{{ $fb['title'] }}"  />
         <meta property="og:description" content="{{ $fb['description'] }}" />
         <meta property="og:image" content="{{ $fb['image'] }}" />
+ @endsection
 @section('styles')
 <style type="text/css">
         .liked,
@@ -91,17 +92,7 @@
                     </form>
                     </li>
                     @endif
-                        <li>
-                            <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button"
-                               data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
-                            </a>
-                            <div id="popover-content" class="hide">
-                                <span class='st_facebook_hcount' displayText='Facebook' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={{ $fb['image'] }}</span>
-                                <span class='st_twitter_large' displayText='Tweet'></span>
-                                <span class='st_googleplus_large' displayText='Google +'></span>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -144,7 +135,7 @@
                                         <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                             <i class="fa fa-camera-retro fa-fw"></i>
                                             @if($reCat->caption!=='')
-                                                <a class="" href="{{ action('GalleryController@getShow', array('id'=> $reCat->id))}}">{{$reCat->caption}}</a>
+                                                <a class="" href="{{ action('GalleryController@getShow', array('slug'=>$reCat->slug,'id'=> $reCat->id))}}">{{$reCat->caption}}</a>
                                             @else
                                                 Caption this !
                                             @endif

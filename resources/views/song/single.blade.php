@@ -63,15 +63,9 @@
           <div class="col-md-12">
             <div class="container">
                 <ul class="list-inline pull-right m5">
-                    <li>
-                        <div class="fb-share-button" 
-                             data-href="https://27colours.com/song/show/{{$song->slug}}/{{$song->id}}" data-layout="button_count">
-                        </div>
-                    </li>
-                    <li>
-                    <span class='st_facebook_hcount' displayText='Facebook' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={{ $fb['image'] }}></span>
-                    </li>
+                   <li>
+                    <a class="share" href="#">share me</a>
+                    </li>                    
 
                 @if(Auth::guest())
                             <a href="/song/like" type="submit" class="btn btn-border not-liked">
@@ -98,18 +92,7 @@
                         <a href="{{asset($song->song)}}" download="download" title="Download &quot;{{$song->title}}&quot;"
                            class="btn btn-default text-capitalize"><i class="fa fa-download"></i> Download this track</a>
                     </li>
-                    <li>
-                        <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button"
-                           data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
-                        </a>
-                        <div id="popover-content" class="hide">
-                            <span class='st_facebook_large' displayText='Facebook' st_url={{$fb['url']}} st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}></span>
-                            <span class='st_twitter_large' displayText='Tweet' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}}></span>
-                            <span class='st_googleplus_large' displayText='Google +' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}> </span>
-                        </div>
-                    </li>
+                   
                 </ul>
             </div>
           </div>
@@ -304,4 +287,14 @@
                 }); // end submit()
 });
     </script>
+    <script>
+    $(document).ready(function() {
+      $(".share").hideshare({
+          link: "{{ $fb['url'] }}",
+          media: "{{ $fb['image'] }}" ,
+          position: "top",
+          linkedin: false
+      });
+    });
+  </script>
 @stop
