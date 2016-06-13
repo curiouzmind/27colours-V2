@@ -130,7 +130,7 @@
                                     <div class="caption">
                                         <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                             <i class="fa fa-music fa-fw"></i>
-                                            <a class="" href="{{ action('VideoController@getShow', array('id'=> $reVideo->id))}}">{{$reVideo->title}}</a>
+                                            <a class="" href="{{ action('VideoController@getShow', array('slug'=>$reVideo->slug,'id'=> $reVideo->id))}}">{{$reVideo->title}}</a>
                                         </h4>
                                         <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                             <a class="" href="{{ action('ProfileController@getShow',
