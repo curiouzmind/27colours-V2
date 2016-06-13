@@ -45,13 +45,13 @@ class SongController extends Controller
         $fb['title']=isset($song->title) ? $song->title.' -By '.$owner->username : $owner->username.' :Please check out my song';
         $fb['type']='Article';
         $fb['description']=isset($song->description) ? $song->description : 'Please check out this song titled '.$song->title.' from moi.Dont forget to like and share the song.Thanks !!!';
-         if(! $song->image== null) 
-            { 
+         //if(! $song->image== null) 
+          //  { 
                 $fb['image']=$song->image;
-            } 
-            else{
-                $fb['image']=asset('img/music-avatar-2.PNG');
-            }
+          //  } 
+          //  else{
+        $fb['image']=asset('img/img-slide-52.jpg');
+          //  }
        // dd($fb['title']);
 
          return View::make('song.single',compact('song','genre','reSongs','fb'));
