@@ -70,7 +70,7 @@
                     </li>
                     <li>
                     <span class='st_facebook_hcount' displayText='Facebook' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={{$fb['image']}}></span>
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}></span>
                     </li>
 
                 @if(Auth::guest())
@@ -103,9 +103,11 @@
                            data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
                         </a>
                         <div id="popover-content" class="hide">
-                            <span class='st_facebook_large' displayText='Facebook' layout="button_count"></span>
-                            <span class='st_twitter_large' displayText='Tweet'></span>
-                            <span class='st_googleplus_large' displayText='Google +'></span>
+                            <span class='st_facebook_large' displayText='Facebook' st_url={{$fb['url']}} st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}></span>
+                            <span class='st_twitter_large' displayText='Tweet' st_url={{$fb['url']}}
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}}></span>
+                            <span class='st_googleplus_large' displayText='Google +' st_url={{$fb['url']}}
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}>> </span>
                         </div>
                     </li>
                 </ul>
