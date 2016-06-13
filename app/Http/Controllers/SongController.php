@@ -47,7 +47,7 @@ class SongController extends Controller
         $fb['description']=isset($song->description) ? $song->description : 'Please check out this song titled '.$song->title.' from moi.Dont forget to like and share the song.Thanks !!!';
          //if(! $song->image== null) 
           //  { 
-                $fb['image']=$song->image;
+                //$fb['image']=$song->image;
           //  } 
           //  else{
         $fb['image']=asset('img/img-slide-52.jpg');
