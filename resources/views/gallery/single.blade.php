@@ -1,7 +1,16 @@
 @extends('layout.master')
 @section('title')
-    <title>{{$gallery->caption ? $gallery->image : 'Caption this!'}} - {{$gallery->user->username}} | 27Colours</title>
-@stop
+    {!!$fb['title']!!} 
+@endsection
+@section('description')
+    {!!$fb['description']!!} 
+@endsection
+ @section('tags')
+        <meta property="og:url" content="{{ $fb['url'] }}" />
+        <meta property="og:type" content="{{ $fb['type'] }}" />
+        <meta property="og:title" content="{{ $fb['title'] }}"  />
+        <meta property="og:description" content="{{ $fb['description'] }}" />
+        <meta property="og:image" content="{{ $fb['image'] }}" />
 @section('styles')
 <style type="text/css">
         .liked,
@@ -58,6 +67,9 @@
             <div class="col-md-12">
                 <div class="container">
                     <ul class="list-inline pull-right m5">
+                    <li>
+                    <a class="share" href="#">share me</a>
+                    </li>
                      @if(Auth::guest())
                                          <a href="/gallery/like" type="submit" class="btn btn-border not-liked">
                                             <i class="fa fa-heart"></i> Like
@@ -84,7 +96,8 @@
                                data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
                             </a>
                             <div id="popover-content" class="hide">
-                                <span class='st_facebook_large' displayText='Facebook'></span>
+                                <span class='st_facebook_hcount' displayText='Facebook' st_url={{$fb['url']}}
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={{ $fb['image'] }}</span>
                                 <span class='st_twitter_large' displayText='Tweet'></span>
                                 <span class='st_googleplus_large' displayText='Google +'></span>
                             </div>

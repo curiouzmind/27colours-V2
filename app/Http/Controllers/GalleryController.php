@@ -51,11 +51,14 @@ class GalleryController extends Controller
         $gallery=Gallery::where(['id'=>$id,'slug'=>$slug])->first();
         $cat= $gallery->cat;
         $reCats =  Gallery::where('cat', '=', $cat)->take(5)->orderBy('id','desc')->get();
+        $fb=[];
+        $fb['url']=url('/gallery/show/'.$gallery->slug.'/'.$gallery->id);
+        $fb['title']=$gallery->caption;
+        $fb['type']='Article';
+        $fb['description']='Please check out my lattest picture.Dont forget to like and share this pic.Thanks !!!';
+        $fb['image']=$gallery->image;
 
-        return View::make('gallery.single')
-        ->with('gallery',$gallery)
-        ->with('cat', $cat)
-        ->with('reCats', $reCats);
+        return View::make('gallery.single', compact('gallery','cat','reCats','fb'));
 
     }
 

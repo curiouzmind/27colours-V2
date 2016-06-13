@@ -6,11 +6,11 @@
     {!!$fb['description']!!} 
 @endsection
  @section('tags')
-        <meta property="og:url" content="{!! $fb['url'] !!}" />
-        <meta property="og:type" content="{!! $fb['type'] !!}" />
-        <meta property="og:title" content="{!! $fb['title'] !!}"  />
-        <meta property="og:description" content="{!! $fb['description'] !!}" />
-        <meta property="og:image" content="{!! $fb['image'] !!}" />
+        <meta property="og:url" content="{{ $fb['url'] }}" />
+        <meta property="og:type" content="{{ $fb['type'] }}" />
+        <meta property="og:title" content="{{ $fb['title'] }}"  />
+        <meta property="og:description" content="{{ $fb['description'] }}" />
+        <meta property="og:image" content="{{ $fb['image'] }}" />
     @endsection
 @section('styles')
     <link rel="stylesheet" href="{{asset('/plugins/soundmanager/css/bar-ui.css')}}">
@@ -70,7 +70,7 @@
                     </li>
                     <li>
                     <span class='st_facebook_hcount' displayText='Facebook' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}></span>
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={{ $fb['image'] }}></span>
                     </li>
 
                 @if(Auth::guest())
@@ -107,7 +107,7 @@
                             <span class='st_twitter_large' displayText='Tweet' st_url={{$fb['url']}}
                     st_title={{ $fb['title']}} st_summary={{ $fb['description']}}></span>
                             <span class='st_googleplus_large' displayText='Google +' st_url={{$fb['url']}}
-                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}>> </span>
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={!! $fb['image'] !!}> </span>
                         </div>
                     </li>
                 </ul>

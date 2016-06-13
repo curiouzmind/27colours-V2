@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{asset('plugins/AudioPlayer/css/audioplayer.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/jasny-bootstrap/css/jasny-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/videoplayer/video.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/hideshare/hideshare.css')}}">
+
     <link rel="stylesheet" href="{{asset('js/jcrop/jquery.Jcrop.min.css')}}" type="text/css" media="screen">
     <!-- css folder -->
     <link rel="stylesheet" href="{{asset('css/all.min.css') }}">

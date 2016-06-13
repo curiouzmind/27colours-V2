@@ -50,9 +50,15 @@ class SongController extends Controller
                 //$fb['image']=$song->image;
           //  } 
           //  else{
+
         $fb['image']=asset('img/img-slide-52.jpg');
+       // list($width, $height) = getimagesize($fb['image']);
+       // $image=getimagesize($image);
+       // dd($image);
+
+        //$data=getimagesize($fb['image']);
           //  }
-       // dd($fb['title']);
+       // dd($width);
 
          return View::make('song.single',compact('song','genre','reSongs','fb'));
         

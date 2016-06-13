@@ -32,6 +32,7 @@
     <script src="{{ asset('plugins/owl-carousel/owl.carousel.js')}}"></script>
     <script src="{{ asset('plugins/jquery.flexslider.min.js')}}"></script>
     <script src="{{ asset('plugins/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/hideshare/hideshare.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js')}}"></script>
     <script src="{{asset('plugins/videoplayer/video.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/humane.min.js') }}"></script>
@@ -170,6 +171,16 @@
             });
         });
     </script>
+    <script>
+    $(document).ready(function() {
+      $(".share").hideshare({
+          link: "{{ $fb['url'] }}",
+          media: "{{ $fb['image'] }}" ,
+          position: "top",
+          linkedin: false
+      });
+    });
+  </script>
     @yield('scripts')
 </body>
 </html>
