@@ -1,7 +1,17 @@
 @extends('layout.master')
 @section('title')
-    <title>{{$video->title}} - {{$video->user->username}} | 27Colours</title>
-@stop
+    {!!$fb['title']!!} 
+@endsection
+@section('description')
+    {!!$fb['description']!!} 
+@endsection
+ @section('tags')
+        <meta property="og:url" content="{{ $fb['url'] }}" />
+        <meta property="og:type" content="{{ $fb['type'] }}" />
+        <meta property="og:title" content="{{ $fb['title'] }}"  />
+        <meta property="og:description" content="{{ $fb['description'] }}" />
+        <meta property="og:image" content="{{ $fb['image'] }}" />
+    @endsection
 @section('styles')
 <style type="text/css">
         .liked,
@@ -52,6 +62,9 @@
             <div class="col-md-12">
                 <div class="container">
                     <ul class="list-inline pull-right m5">
+                    <li>
+                    <a class="share" href="#">share me</a>
+                    </li>
                     @if(Auth::guest())
                                          <a href="/video/like" type="submit" class="btn btn-border not-liked">
                                             <i class="fa fa-heart"></i> Like
@@ -73,16 +86,7 @@
                     </form>
                     </li>
                     @endif
-                        <li>
-                            <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button"
-                               data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
-                            </a>
-                            <div id="popover-content" class="hide">
-                                <span class='st_facebook_large' displayText='Facebook'></span>
-                                <span class='st_twitter_large' displayText='Tweet'></span>
-                                <span class='st_googleplus_large' displayText='Google +'></span>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -191,4 +195,14 @@
                 }); // end submit()
 });
     </script>
+     <script>
+    $(document).ready(function() {
+      $(".share").hideshare({
+          link: "{{ $fb['url'] }}",
+          media: "{{ $fb['image'] }}" ,
+          position: "top",
+          linkedin: false
+      });
+    });
+  </script>
 @stop

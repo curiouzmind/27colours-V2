@@ -3,7 +3,7 @@
     Songs Page
 @endsection
 @section('description')
-    Check out all the cool tracks from our artist
+    Check out all the cool tracks from our artists
 @endsection
     @section('styles')
     <style type="text/css">

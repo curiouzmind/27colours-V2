@@ -1,8 +1,12 @@
 @extends('layout.master')
 @section('title')
-    <title>Videos | 27Colours</title>
-    @stop
-    @section('css-links')
+    @section('title')
+    Video Page
+@endsection
+@section('description')
+    Check out all the cool videos from our artists
+@endsection
+    @section('styles')
     <style type="text/css">
     .badge .fa{
         color: #9C0000;

@@ -52,14 +52,24 @@ class VideoController extends Controller
     public function getShow($slug,$id)
     {
         $video=Video::where(['slug'=>$slug,'id'=>$id])->first();
+        $owner=$video->user;
         $id= $video->id;
         $type= $video->video_type;
         $reVideos =  Video::where('video_type', '=', $type)->take(5)->orderBy('id','desc')->get();
+        $fb=[];
+        $fb['url']=url('/video/show/'.$video->slug.'/'.$video->id);
+        $fb['title']=isset($video->title) ? $video->title.' -By '.$owner->username : $owner->username.' :Please check out my video';
+        $fb['type']='Article';
+        $fb['description']=isset($video->description) ? $video->description : 'Please check out this video titled '.$video->title.' from moi.Dont forget to like and share the video.Thanks !!!';
+         if(! $video->image== null) 
+            { 
+                $fb['image']=$video->image;
+           } 
+            else{
+               $fb['image']=asset('img/img-slide-52.jpg');
+           }
 
-         return View::make('video.single')
-        ->with('video',$video)
-        ->with('type', $type)
-        ->with('reVideos',$reVideos);
+         return View::make('video.single', compact('video','type','reVideos','fb'));
 
     }
 
