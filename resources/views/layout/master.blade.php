@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-@yield('styles')
-@yield('css-links')
+<html>
 @include('layout.header')
 <body>
+<!-- FB PLUGIN JAVASCRIPT CODE -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=539099199605669";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- ./ FB PLUGIN -->
   	<div>
    		 <div>
              @include('layout.head')
@@ -126,24 +135,8 @@
             $.mobile.ignoreContentEnabled = true;
         });
     </script>
-    <!-- FB PLUGIN JAVASCRIPT CODE -->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=221153544678812";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <!-- ./ FB PLUGIN -->
-    <!-- Sharing plugin -->
-    <script type="text/javascript">var switchTo5x=true;</script>
-    <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
-    <script type="text/javascript">stLight.options(
-                {publisher: "462b8e41-098f-4d6e-af7f-52472fed576a", doNotHash: false,
-                    doNotCopy: false, hashAddressBar: true, displayText: "27Colours"});
-    </script>
+    
+    
     <script>
         $(function() {
             // Enable Selectize

@@ -1,8 +1,18 @@
 @extends('layout.master')
 @section('title')
-    <title>{{$song->title}} - {{$song->user->username}} | 27Colours</title>
-@stop
-@section('css-links')
+    {!!$fb['title']!!} 
+@endsection
+@section('description')
+    {!!$fb['description']!!} 
+@endsection
+ @section('tags')
+        <meta property="og:url" content="{!! $fb['url'] !!}" />
+        <meta property="og:type" content="{!! $fb['type'] !!}" />
+        <meta property="og:title" content="{!! $fb['title'] !!}"  />
+        <meta property="og:description" content="{{$fb['description']}}" />
+        <meta property="og:image" content="{{$fb['image']}}" />
+    @endsection
+@section('styles')
     <link rel="stylesheet" href="{{asset('/plugins/soundmanager/css/bar-ui.css')}}">
     <link rel="stylesheet" href="{{asset('/plugins/soundmanager/css/demo.css')}}">
     <style type="text/css">
@@ -24,11 +34,11 @@
 
         }
     </style>
-@stop
+@endsection
 @section('header')
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "462b8e41-098f-4d6e-af7f-52472fed576a", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-@stop
+@endsection
 @section('content')
             <!-- page header -->
     <div class="page-banner well">
@@ -53,12 +63,22 @@
           <div class="col-md-12">
             <div class="container">
                 <ul class="list-inline pull-right m5">
+                    <li>
+                        <div class="fb-share-button" 
+                             data-href="https://27colours.com/song/show/{{$song->slug}}/{{$song->id}}" data-layout="button_count">
+                        </div>
+                    </li>
+                    <li>
+                    <span class='st_facebook_hcount' displayText='Facebook' st_url={{$fb['url']}}
+                    st_title={{ $fb['title']}} st_summary={{ $fb['description']}} st_image={{$fb['image']}}></span>
+                    </li>
+
                 @if(Auth::guest())
-                                         <a href="/song/like" type="submit" class="btn btn-border not-liked">
-                                            <i class="fa fa-heart"></i> Like
-                                            <span class="badge badge-inverse"> {{$song->likes->count()}}</span>
-                                         </a>
-                                    @endif
+                            <a href="/song/like" type="submit" class="btn btn-border not-liked">
+                                <i class="fa fa-heart"></i> Like
+                                <span class="badge badge-inverse"> {{$song->likes->count()}}</span>
+                             </a>
+                    @endif
                     @if(Auth::check())
                     <li>                   
                     {{--*/ $userLike=App\Like::where(['likeable_id'=>$song->id,'user_id'=>Auth::id()])->first() /*--}}
@@ -83,7 +103,7 @@
                            data-html="true" href="#">Share <i class="fa fa-share-alt"></i>
                         </a>
                         <div id="popover-content" class="hide">
-                            <span class='st_facebook_large' displayText='Facebook'></span>
+                            <span class='st_facebook_large' displayText='Facebook' layout="button_count"></span>
                             <span class='st_twitter_large' displayText='Tweet'></span>
                             <span class='st_googleplus_large' displayText='Google +'></span>
                         </div>

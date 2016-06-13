@@ -14,16 +14,16 @@
     <div class="owl-carousel">
         @foreach ($galleries as $gallery)
             <div class="thumbnail">
-                <a href="{{ action('GalleryController@getShow', array('id'=> $gallery->id))}}">
+                <a href="{{ action('GalleryController@getShow', array('slug'=>$gallery->slug,'id'=> $gallery->id))}}">
                     <img src="{{$gallery->image}}" alt="">
                 </a>
                 <div class="caption">
                     <h4 class="text-uppercase upload-title">
                         <i class="fa fa-camera-retro"></i>
                         @if($gallery->caption!=='')
-                            <a href="{{ action('GalleryController@getShow', array('id'=> $gallery->id))}}">{{$gallery->caption}}</a>
+                            <a href="{{ action('GalleryController@getShow', array('slug'=>$gallery->slug,'id'=> $gallery->id))}}">{{$gallery->caption}}</a>
                         @else
-                            <a href="{{ action('GalleryController@getShow', array('id'=> $gallery->id))}}">Caption This!</a>
+                            <a href="{{ action('GalleryController@getShow', array('slug'=>$gallery->slug,'id'=> $gallery->id))}}">Caption This!</a>
                         @endif
                     </h4>
                     <p class="text-uppercase uploader">

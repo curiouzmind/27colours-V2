@@ -1,19 +1,19 @@
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@yield('title')</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @yield('title')
     <!-- seo -->
-     <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="singing, photoshoot,modelling,talent search">
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="singing,photoshoot,modelling,talent search">
     <meta name="author" content="curiouzmindTech">
+
+    @yield('tags')
+
     <!-- core css -->
     <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.css')}}">
     <!-- plugins css -->
 
-    <meta property="og:title" content="@yield('title')">
-    <meta property="og:description" content="@yield('description')">
-    <meta property="og:image" content="http://27colours.com/img/logo.png">
     <!-- plugins folder -->
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.theme.css')}}">
@@ -41,7 +41,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    @yield('styles')
+    @yield('css-links')
     @yield('header')
+    <!-- Sharing plugin -->
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options(
+                {publisher: "462b8e41-098f-4d6e-af7f-52472fed576a", doNotHash: false,
+                    doNotCopy: false, hashAddressBar: true, displayText: "27Colours"});
+    </script>
 </head>
 

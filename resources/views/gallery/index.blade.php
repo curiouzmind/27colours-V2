@@ -64,9 +64,9 @@
                                                 <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                     <i class="fa fa-camera-retro fa-fw"></i>
                                                     @if($model->caption!=='')
-                                                        <a class="" href="{{ action('GalleryController@getShow', array('id'=> $model->id))}}">{{$model->caption}}</a>
+                                                        <a class="" href="{{ action('GalleryController@getShow', array('slug'=>$model->slug,'id'=> $model->id))}}">{{$model->caption}}</a>
                                                     @else
-                                                        <a href="{{ action('GalleryController@getShow', array('id'=> $model->id))}}">Caption This!</a>
+                                                        <a href="{{ action('GalleryController@getShow', array('slug'=>$model->slug,'id'=> $model->id))}}">Caption This!</a>
                                                     @endif
                                                 </h4>
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
@@ -104,9 +104,9 @@
                                                 <h4 class="list-group-item-text m0 upload-title p10-top">
                                                     <i class="fa fa-camera-retro fa-fw"></i>
                                                     @if($other->caption!=='')
-                                                        <a class="" href="{{ action('GalleryController@getShow', array('id'=> $other->id))}}">{{$other->caption}}</a>
+                                                        <a class="" href="{{ action('GalleryController@getShow', array('slug'=>$other->slug,'id'=> $other->id))}}">{{$other->caption}}</a>
                                                     @else
-                                                        <a href="{{ action('GalleryController@getShow', array('id'=> $other->id))}}">Caption This!</a>
+                                                        <a href="{{ action('GalleryController@getShow', array('slug'=>$other->slug,'id'=> $other->id))}}">Caption This!</a>
                                                     @endif
                                                 </h4>
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>

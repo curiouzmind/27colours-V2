@@ -67,7 +67,7 @@
                                                 <div class="caption">
                                                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                         <i class="fa fa-music fa-fw"></i>
-                                                        <a class="" href="{{ action('SongController@getShow', array('id'=> $afrobeat->id))}}">{{$afrobeat->title}}</a>
+                                                        <a class="" href="{{ action('SongController@getShow', array('slug'=> $afrobeat->slug,'id'=>$afrobeat->id))}}">{{$afrobeat->title}}</a>
                                                     </h4>
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
@@ -104,7 +104,7 @@
                                                 <div class="caption">
                                                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                         <i class="fa fa-music fa-fw"></i>
-                                                        <a class="" href="{{ action('SongController@getShow', array('id'=> $hip->id))}}">{{$hip->title}}</a>
+                                                        <a class="" href="{{ action('SongController@getShow', array('slug'=> $hip->slug,'id'=>$hip->id))}}">{{$hip->title}}</a>
                                                     </h4>
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
@@ -140,7 +140,7 @@
                                             <div class="caption">
                                                 <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                     <i class="fa fa-music fa-fw"></i>
-                                                    <a class="" href="{{ action('SongController@getShow', array('id'=> $rnb->id))}}">{{$rnb->title}}</a>
+                                                    <a class="" href="{{ action('SongController@getShow', array('slug'=> $rnb->slug,'id'=>$rnb->id))}}">{{$rnb->title}}</a>
                                                 </h4>
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
@@ -175,7 +175,7 @@
                                                 <div class="caption">
                                                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                         <i class="fa fa-music fa-fw"></i>
-                                                        <a class="" href="{{ action('SongController@getShow', array('id'=> $gospel->id))}}">{{$gospel->title}}</a>
+                                                        <a class="" href="{{ action('SongController@getShow', array('slug'=>$gospel->slug,'id'=> $gospel->id))}}">{{$gospel->title}}</a>
                                                     </h4>
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
@@ -211,7 +211,7 @@
                                                 <div class="caption">
                                                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                         <i class="fa fa-music fa-fw"></i>
-                                                        <a class="" href="{{ action('SongController@getShow', array('id'=> $highlife->id))}}">{{$highlife->title}}</a>
+                                                        <a class="" href="{{ action('SongController@getShow', array('slug'=>$highlife->slug, 'id'=> $highlife->id))}}">{{$highlife->title}}</a>
                                                     </h4>
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',
@@ -246,7 +246,7 @@
                                                 <div class="caption">
                                                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                         <i class="fa fa-music fa-fw"></i>
-                                                        <a class="" href="{{ action('SongController@getShow', array('id'=> $other->id))}}">{{$other->title}}</a>
+                                                        <a class="" href="{{ action('SongController@getShow', array('slug'=>$other->slug, 'id'=> $other->id))}}">{{$other->title}}</a>
                                                     </h4>
                                                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                         <a class="" href="{{ action('ProfileController@getShow',

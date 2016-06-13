@@ -42,4 +42,13 @@ class Gallery extends Model
     {
         return $query->orderBy('id','DESC');
     }
+
+    public function setCaptionAttribute($value)
+     {
+       $this->attributes['caption'] = $value;
+
+      if (! $this->exists) {
+      $this->attributes['slug'] = str_slug($value);
+         }
+    }
 }

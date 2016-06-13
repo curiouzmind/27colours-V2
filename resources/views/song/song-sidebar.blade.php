@@ -25,7 +25,7 @@
     <!-- Fetch Songs -->
 @foreach ($recentSongs as $song)
     <div class="list-group">
-        <a href="{{ action('SongController@getShow', array('id'=> $song->id))}}" class="list-group-item clearfix">
+        <a href="{{ action('SongController@getShow', array('slug'=>$song->slug,'id'=> $song->id))}}" class="list-group-item clearfix">
             <span class="list-group-image pull-left">
                 @if($song->image!=='')
                     {{HTML::image($song->image, $song->title,array('class'=>'sidebar-thumb-img', 'width' => 100 , 'height' => 100))}}

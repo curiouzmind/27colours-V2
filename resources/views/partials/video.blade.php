@@ -14,7 +14,7 @@
 @foreach ($videos as $video)
         <div class="col-md-4 col-xs-12">
             <div class="">
-              <a href="{{ action('VideoController@getShow', array('id'=> $video->id))}}">
+              <a href="{{ action('VideoController@getShow', array('slug'=>$video->slug,'id'=> $video->id))}}">
                   <div class="post-img-boxed center-block">
                       @if( isset($video->youtube))
                           <div class="">
@@ -34,9 +34,9 @@
                   </div> </a>
                 <h4 class="text-uppercase upload-title"><i class="fa fa-video-camera fa-fw"></i>
                     @if($video->caption!=='')
-                        <a href="{{ action('VideoController@getShow', array('id'=> $video->id))}}">{{$video->title}}</a>
+                        <a href="{{ action('VideoController@getShow', array('slug'=>$video->slug,'id'=> $video->id))}}">{{$video->title}}</a>
                     @else
-                        <a href="{{ action('VideoController@getShow', array('id'=> $video->id))}}">Watch here</a>
+                        <a href="{{ action('VideoController@getShow', array('slug'=>$video->slug,'id'=> $video->id))}}">Watch here</a>
                     @endif
                 </h4>
                 <p class="text-uppercase uploader"><i class="fa fa-user fa-fw"></i>

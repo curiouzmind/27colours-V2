@@ -31,20 +31,31 @@ class SongController extends Controller
         $this->middleware('auth',['only'=>'getLike']);
     }
 
-    public function getShow($id)
+    public function getShow($slug,$id)
     {   
         //$song=Song::findorfail($id);
-        $song=$this->song->find($id);
-        //dd($song);
+        $song=$this->song->sluggedSong($slug,$id);
+        $owner= $song->user;
         $id= $song->id;
         $genre= $song->genre;
         //$reSongs =  Song::where('genre', '=', $genre)->take(5)->orderBy('id','desc')->get();
         $reSongs= $this->song->recentSong($genre);
+        $fb=[];
+        $fb['url']=url('/song/show/'.$song->slug.'/'.$song->id);
+        $fb['title']=isset($song->title) ? $song->title.' -By '.$owner->username : $owner->username.' :Please check out my song';
+        $fb['type']='Article';
+        $fb['description']=isset($song->description) ? $song->description : 'Please check out this song titled '.$song->title.' from moi.Dont forget to like and share the song.Thanks !!!';
+         if(! $song->image== null) 
+            { 
+                $fb['image']=$song->image;
+            } 
+            else{
+                $fb['image']=asset('img/music-avatar-2.PNG');
+            }
+       // dd($fb['title']);
 
-         return View::make('song.single')
-        ->with('song',$song)
-         ->with('genre', $genre)
-        ->with('reSongs',$reSongs);
+         return View::make('song.single',compact('song','genre','reSongs','fb'));
+        
     }
     
 //  desktop upload page
@@ -160,7 +171,7 @@ class SongController extends Controller
      public function postProcess(Request $request)
     {
         $song_id=$request->get('song_id');
-        $song=Song::findorfail($song_id);
+        $song=$this->song->find($song_id);
         $matchLike =['likeable_id'=>$song_id,'user_id'=>\Auth::id()];
         $userLike=Like::where($matchLike)->first();
 

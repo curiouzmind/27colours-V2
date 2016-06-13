@@ -33,14 +33,13 @@ class HomeController extends Controller
      */
     public function getIndex()
   {    
-    //if (\App::environment('production', 'staging'))
-     // {
-     //   echo "environment=", \App::environment(), "\n";
+    //$gals=Video::all();
+    //foreach($gals as $gal){
+       // $gal->slug=str_slug($gal->title);
+       // $gal->save();
      // }
-   // else
-     // {
-      //  echo "environment=", \App::environment(), "\n";
-     // }
+     // dd('done');
+    
         //dd(asset('img/user.png'));
         $songs = Song::orderBy('id','desc')->paginate(4);
         $videos= Video::orderBy('id', 'desc')->paginate(3);

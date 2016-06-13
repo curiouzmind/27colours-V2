@@ -49,9 +49,9 @@ class VideoController extends Controller
      }
 
 
-    public function getShow($id)
+    public function getShow($slug,$id)
     {
-        $video=Video::findorfail($id);
+        $video=Video::where(['slug'=>$slug,'id'=>$id])->first();
         $id= $video->id;
         $type= $video->video_type;
         $reVideos =  Video::where('video_type', '=', $type)->take(5)->orderBy('id','desc')->get();

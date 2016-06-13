@@ -46,12 +46,11 @@ class GalleryController extends Controller
      }
 
 
-     public function getShow($id)
+     public function getShow($slug,$id)
     {
-        $gallery=Gallery::findorfail($id);
-        $id= $gallery->id;
-      $cat= $gallery->cat;
-      $reCats =  Gallery::where('cat', '=', $cat)->take(5)->orderBy('id','desc')->get();
+        $gallery=Gallery::where(['id'=>$id,'slug'=>$slug])->first();
+        $cat= $gallery->cat;
+        $reCats =  Gallery::where('cat', '=', $cat)->take(5)->orderBy('id','desc')->get();
 
         return View::make('gallery.single')
         ->with('gallery',$gallery)

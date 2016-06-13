@@ -23,7 +23,7 @@
                 <div class="caption">
                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                         <i class="fa fa-music fa-fw"></i>
-                        <a href="{{ action('SongController@getShow', array('id'=> $song->id))}}">{{$song->title}}</a>
+                        <a href="{{ action('SongController@getShow', array('slug'=>$song->slug,'id'=> $song->id))}}">{{$song->title}}</a>
                     </h4>
                     <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                         <a href="{{ action('ProfileController@getShow', array('id'=>$song->user->id))}}">{{$song->user->username}}</a>

@@ -15,15 +15,15 @@
 
 Route::get('/privacyPolicy', 'ProfileController@privacyPolicy');
 
-Route::get('song/show/{id}', 'SongController@getShow');
+Route::get('song/show/{slug}/{id}', 'SongController@getShow');
 //Route::get('song')
 Route::controller('/song', 'SongController');
 
-Route::get('/video/show/{id}', 'VideoController@getShow');
+Route::get('/video/show/{slug}/{id}', 'VideoController@getShow');
 
 Route::controller('/video', 'VideoController');
 
-Route::get('/gallery/show/{id}', 'GalleryController@getShow');
+Route::get('/gallery/show/{slug}/{id}', 'GalleryController@getShow');
 Route::controller('/gallery', 'GalleryController');
 Route::Controller('admin','AdminController');
 

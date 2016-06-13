@@ -14,7 +14,7 @@ class SongRepo extends GenericRepo{
 	{
 		$this->model =$model;
 	}
-	/*
+	// /*
 
 	public function getAll()
 	{
@@ -25,11 +25,16 @@ class SongRepo extends GenericRepo{
 	{
 		return Song::findOrFail($id);
 	}
-	 */
+	// */
 
 	public function recentSong($genre)
 	{
  		 return Song::where('genre', '=', $genre)->take(5)->orderBy('id','desc')->get();
+	}
+
+	public function sluggedSong($slug,$id)
+	{
+		return Song::where(['slug'=>$slug,'id'=>$id])->first();
 	}
 	
 }
