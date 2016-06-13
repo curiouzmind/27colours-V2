@@ -171,16 +171,6 @@
             });
         });
     </script>
-    <script>
-    $(document).ready(function() {
-      $(".share").hideshare({
-          link: "{{ $fb['url'] }}",
-          media: "{{ $fb['image'] }}" ,
-          position: "top",
-          linkedin: false
-      });
-    });
-  </script>
     @yield('scripts')
 </body>
 </html>
