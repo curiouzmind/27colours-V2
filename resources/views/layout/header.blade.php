@@ -7,7 +7,6 @@
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="singing,photoshoot,modelling,talent search">
     <meta name="author" content="curiouzmindTech">
-
     @yield('tags')
 
     <!-- core css -->
@@ -23,18 +22,11 @@
     <link rel="stylesheet" href="{{asset('plugins/videoplayer/video.css')}}">
     <link rel="stylesheet" href="{{asset('js/jcrop/jquery.Jcrop.min.css')}}" type="text/css" media="screen">
     <!-- css folder -->
-    <!-- <link rel="stylesheet" type="text/css" href="{{asset('css/themes/jackedup.css')}}" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/selectize.css')}}"/> -->
-    <!-- custom global css -->
-    <!-- <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}"> -->
-    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
-    
-    <!-- GOOGLE FONTS -->
-    <link href='https://fonts.googleapis.com/css?family=Dosis:500,300,700,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{asset('css/all.min.css') }}">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,300,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
     <link rel="stylesheet" href="{{asset('plugins/font-awesome-4.1.0/css/font-awesome.css')}}">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
