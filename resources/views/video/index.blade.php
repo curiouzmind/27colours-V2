@@ -105,7 +105,7 @@
                                             <div class="caption">
                                                 <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                     <i class="fa fa-video-camera fa-fw"></i>
-                                                    <a class="" href="{{ action('SongController@getShow', array('slug'=>$dance->slug,'id'=> $dance->id))}}">{{$dance->title}}</a>
+                                                    <a class="" href="{{ action('VideoController@getShow', array('slug'=>$dance->slug,'id'=> $dance->id))}}">{{$dance->title}}</a>
                                                 </h4>
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
@@ -140,7 +140,7 @@
                                             <div class="caption">
                                                 <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                                     <i class="fa fa-video-camera fa-fw"></i>
-                                                    <a class="" href="{{ action('SongController@getShow', array('slug'=>$comedy->slug,'id'=> $comedy->id))}}">{{$comedy->title}}</a>
+                                                    <a class="" href="{{ action('VideoController@getShow', array('slug'=>$comedy->slug,'id'=> $comedy->id))}}">{{$comedy->title}}</a>
                                                 </h4>
                                                 <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                                     <a class="" href="{{ action('ProfileController@getShow',
