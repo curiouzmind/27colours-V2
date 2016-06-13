@@ -1,10 +1,10 @@
 @extends('layout.master')
     @section('title')
-        <title>Home | 27Colours</title>
-    @stop
-    @section('description')
-        Looking for the next singing, dancing and modelling talents
-    @stop
+    Home -27Colours
+@endsection
+@section('description')
+    Best talent manager anywhere,anyhow.
+@endsection
     @section('styles')
         <style>
             body {padding-top:0 !important;}

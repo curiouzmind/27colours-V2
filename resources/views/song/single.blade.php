@@ -9,8 +9,8 @@
         <meta property="og:url" content="{!! $fb['url'] !!}" />
         <meta property="og:type" content="{!! $fb['type'] !!}" />
         <meta property="og:title" content="{!! $fb['title'] !!}"  />
-        <meta property="og:description" content="{{$fb['description']}}" />
-        <meta property="og:image" content="{{$fb['image']}}" />
+        <meta property="og:description" content="{!! $fb['description'] !!}" />
+        <meta property="og:image" content="{!! $fb['image'] !!}" />
     @endsection
 @section('styles')
     <link rel="stylesheet" href="{{asset('/plugins/soundmanager/css/bar-ui.css')}}">
@@ -218,7 +218,7 @@
                                     <div class="caption">
                                         <h4 class="upload-title group inner list-group-item-heading text-uppercase">
                                             <i class="fa fa-music fa-fw"></i>
-                                            <a class="" href="{{ action('SongController@getShow', array('id'=> $song->id))}}">{{$song->title}}</a>
+                                            <a class="" href="{{ action('SongController@getShow', array('slug'=>$song->slug,'id'=> $song->id))}}">{{$song->title}}</a>
                                         </h4>
                                         <p class="uploader text-uppercase"><i class="fa fa-user fa-fw"></i>
                                             <a class="" href="{{ action('ProfileController@getShow',
