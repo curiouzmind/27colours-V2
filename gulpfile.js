@@ -25,6 +25,9 @@ elixir(function(mix) {
 			'backend/sb-admin-2.css',
 			'backend/timeline.css'
 		], 'public/css/all.min.css', 'resources/assets/css/')
+    	.sass([
+    		'app.scss'
+		], 'public/css/allsass.min.css', 'resources/assets/sass/')
         .browserSync({
             proxy: '27colours.local'
         });

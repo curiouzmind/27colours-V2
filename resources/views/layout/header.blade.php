@@ -17,14 +17,15 @@
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.theme.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.transition.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/hideshare/hideshare.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/AudioPlayer/css/audioplayer.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/jasny-bootstrap/css/jasny-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/videoplayer/video.css')}}">
-    <link rel="stylesheet" href="{{asset('plugins/hideshare/hideshare.css')}}">
 
     <link rel="stylesheet" href="{{asset('js/jcrop/jquery.Jcrop.min.css')}}" type="text/css" media="screen">
     <!-- css folder -->
     <link rel="stylesheet" href="{{asset('css/all.min.css') }}">
+    <link rel="stylesheet" href="{{asset('css/allsass.min.css') }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,300,500,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">

@@ -64,14 +64,16 @@
             <div class="container">
                 <ul class="list-inline pull-right m5">
                    <li>
-                    <a class="share" href="#">share me</a>
+                    <a class="share" href="#">share me <i class="fa fa-share-alt"></i></a>
                     </li>                    
 
                 @if(Auth::guest())
-                            <a href="/song/like" type="submit" class="btn btn-border not-liked">
-                                <i class="fa fa-heart"></i> Like
-                                <span class="badge badge-inverse"> {{$song->likes->count()}}</span>
-                             </a>
+                    <li>
+                        <a href="/song/like" type="submit" class="btn btn-border not-liked">
+                            <i class="fa fa-heart"></i> Like
+                            <span class="badge badge-inverse"> {{$song->likes->count()}}</span>
+                         </a>
+                     </li>
                     @endif
                     @if(Auth::check())
                     <li>                   
