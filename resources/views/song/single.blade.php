@@ -36,7 +36,7 @@
     </style>
 @endsection
 @section('header')
-    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript" src="https://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "462b8e41-098f-4d6e-af7f-52472fed576a", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 @endsection
 @section('content')
