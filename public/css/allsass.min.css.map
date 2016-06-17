@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAEA;EAEE,iBAAiB,EACjB","file":"allsass.min.css","sourcesContent":["// @import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\r\n\r\n.hideshare-wrap {\r\n\t.share {\r\n\t\tpadding: 0.5em 0;\r\n\t}\r\n}\r\n\r\n"],"sourceRoot":"/source/"}

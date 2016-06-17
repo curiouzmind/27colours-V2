@@ -72,7 +72,7 @@ class VideoController extends Controller
          {
             $fb['description']=$video->image.'<br>'.$video->description;
          }
-        
+
          if(! $video->image== null) 
             { 
                 $fb['image']=$video->image;

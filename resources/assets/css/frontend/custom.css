@@ -85,6 +85,7 @@ body {
     padding: 5px 15px;
 }
 .navbar-brand img {
+    margin: 0 auto;
     height:40px;
     width:auto;
 }
@@ -518,7 +519,7 @@ section h4.section-sub {
 }
 .sm2-bar-ui .sm2-main-controls,
 .sm2-bar-ui .sm2-playlist-drawer {
-    background-color: #cc181e;
+    background-color: #cc181e !important;
 }
 .sm2-bar-ui .sm2-inline-texture {
     background: transparent;
