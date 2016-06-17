@@ -5,6 +5,7 @@
   margin: 0 auto;
   text-align: center;
   position: relative;
+  width: auto !important;
 }
 .hideshare-wrap .hideshare-list {
   position: absolute;
