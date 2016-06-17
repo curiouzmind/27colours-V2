@@ -12441,6 +12441,9 @@ section h4.section-sub {
 .sm2-bar-ui .sm2-inline-texture {
     background: transparent;
 }
+.hideshare-wrap {
+    width: auto !important;
+}
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
     z-index: 2;
     color: #fff;

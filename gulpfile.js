@@ -38,13 +38,13 @@ elixir(function(mix) {
         });
 });
 // optimize js & css and copy to prod
-gulp.task('useref', function() {
-  return gulp.src('index.php')
-        .pipe(useref())
-        .pipe(gulpIf('*.js', uglify()))
-        .pipe(gulpIf('*.css', cssnano()))
-        .pipe(gulpIf('*.css', autoprefixer({
-          browsers: ['last 2 versions']
-        })))
-        .pipe(gulp.dest('prod'))
-})
+// gulp.task('useref', function() {
+//   return gulp.src('index.php')
+//         .pipe(useref())
+//         .pipe(gulpIf('*.js', uglify()))
+//         .pipe(gulpIf('*.css', cssnano()))
+//         .pipe(gulpIf('*.css', autoprefixer({
+//           browsers: ['last 2 versions']
+//         })))
+//         .pipe(gulp.dest('prod'))
+// })
