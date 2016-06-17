@@ -60,11 +60,11 @@ class VideoController extends Controller
         $fb['url']=url('/video/show/'.$video->slug.'/'.$video->id);
         $fb['title']=isset($video->title) ? $video->title.' -By '.$owner->username : $owner->username.' :Please check out my video';
         $fb['type']='Article';
-        if( ($video->description =="") && ($Video->video != ""))
+        if( ($video->description =="") && ($video->video != ""))
         {
             $fb['description']=$video->image."<br><p> Please check out my video and dont forget to like and share it</p>";
         }
-         if( ($video->description =="") && ($Video->video === ""))
+         if( ($video->description =="") && ($video->video === ""))
          {
             $fb['description']=$video->image;
          }
