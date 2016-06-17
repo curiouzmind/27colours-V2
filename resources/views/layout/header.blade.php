@@ -10,6 +10,7 @@
     @yield('tags')
 
     <!-- core css -->
+    <link rel="stylesheet" href="{{asset('plugins/hideshare/hideshare.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.css')}}">
     <!-- plugins css -->
 
@@ -17,7 +18,6 @@
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.theme.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/owl-carousel/owl.transition.css')}}">
-    <link rel="stylesheet" href="{{asset('plugins/hideshare/hideshare.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/AudioPlayer/css/audioplayer.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/jasny-bootstrap/css/jasny-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/videoplayer/video.css')}}">

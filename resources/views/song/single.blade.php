@@ -64,7 +64,7 @@
             <div class="container">
                 <ul class="list-inline pull-right m5">
                    <li>
-                    <a class="share" href="#">share me <i class="fa fa-share-alt"></i></a>
+                        <a class="share" href="#">share me <i class="fa fa-share-alt"></i></a>
                     </li>                    
 
                 @if(Auth::guest())

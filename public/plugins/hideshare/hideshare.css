@@ -28,14 +28,8 @@
 /*
   Example CSS
 */
-body {
-  background: #232323;
-  font-family: sans-serif;
-  font-size: 14px;
-  padding: 5em 0 5em;
-  text-align: center;
-}
-img {
+
+.hideshare-wrap img {
   margin: 0 auto 5em;
   width: 200px;
   height: auto;
@@ -46,10 +40,10 @@ img {
   border-radius: 5px;
   border: 1px solid #444;
 }
-a {
+.hideshare-wrap a {
   text-decoration: none;
 }
-.share {
+.hideshare-wrap .share {
   display: block;
   width: 150px;
   margin: 0 auto;
@@ -67,13 +61,13 @@ a {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.6);
 }
-.share:hover {
+.hideshare-wrap .share:hover {
   background: #ffffff;
 }
-.hideshare-list a {
+.hideshare-wrap .hideshare-list a {
   color: #dedede;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
-.hideshare-list a:hover {
+.hideshare-wrap .hideshare-list a:hover {
   color: #ffffff;
 }
