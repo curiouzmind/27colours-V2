@@ -168,7 +168,7 @@ class User extends Authenticatable
     public function creatNewUser($userData)
     {
         $newUser=User::firstOrCreate([
-                 'username'=> isset($userData->nickname) ? $userData->nickname : $userData->user['first_name'],
+                 'username'=> isset($userData->nickname) ? str_slug($userData->nickname) : str_slug($userData->user['first_name']),
                  'email' =>$userData->email,
                  'first_name'=>$userData->user['first_name'],
                  'last_name'=>$userData->user['last_name'],

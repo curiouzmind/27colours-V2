@@ -24,10 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $filePath=public_path().'/cron_logs.php';
+       // $filePath=public_path().'/cron_logs.php';
         // Run once a minute
-        $schedule->command('queue:work')->everyMinute()
-            ->appendOutputTo($filePath);
+        $schedule->command('queue:work')->everyMinute();
+           // ->appendOutputTo($filePath);
         // $schedule->command('inspire')->hourly();
     }
 }

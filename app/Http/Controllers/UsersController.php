@@ -29,7 +29,7 @@ class UsersController extends Controller
         	 return redirect('/profile');     
     }
 
-    private function activate($code)
+    public function activate($code)
     {
         $user = User::where('confirmation_code', '=', $code)->first();
           if($user)
