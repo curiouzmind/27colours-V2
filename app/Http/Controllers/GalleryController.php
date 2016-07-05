@@ -78,8 +78,8 @@ class GalleryController extends Controller
              {
 
                 $image = $request->file('image');
-                $filename = $image->getClientOriginalName();
-                $name = str_random(6).'-'.$filename;
+                $filename = $image->getClientOriginalExtension();
+                $name = str_random(15).$filename;
                 $desPath= public_path('img/galleries/');
                 $upload_success =$image->move($desPath,$name);
                 $pic->image ='img/galleries/'.$name;

@@ -18,7 +18,7 @@
                 @if($song->image!=='')
                     {{HTML::image($song->image, $song->title,array('class'=>'img-responsive group list-group-image'))}}
                 @else
-                    {{HTML::image('img/music-avatar-2.png','thumbnail',array('class'=>'group list-group-image', 'style'=>'padding:10px;'))}}
+                    {{HTML::image('img/music-avatar-2.PNG','thumbnail',array('class'=>'group list-group-image', 'style'=>'padding:10px;'))}}
                 @endif
                 <div class="caption">
                     <h4 class="upload-title group inner list-group-item-heading text-uppercase">
